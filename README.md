@@ -1,67 +1,85 @@
-# BytesEncrypt Technologies — Frontend Replication
+# BytesEncrypt Technologies
 
-A high-fidelity frontend replication of [bytesencrypt.com](https://bytesencrypt.com/) built with Next.js, TypeScript, React, and Tailwind CSS.
+> **Offensive Security and Assurance Partner for Enterprises**  
+> VAPT, Red Teaming, Secure Code Review, Cloud Security, and Cyber Risk Advisory.
 
-## Technologies Used
+---
 
-- **Next.js 15** — React framework with App Router
-- **TypeScript** — Type-safe development
-- **React 19** — UI component library
-- **Tailwind CSS 4** — Utility-first CSS framework
-- **Framer Motion** — Animations and transitions
-- **Lucide React** — Icon library
-- **React Hook Form** — Form state management
-- **Zod** — Schema validation
-- **@hookform/resolvers** — Zod integration with React Hook Form
+## Overview
 
-## Project Structure
+BytesEncrypt Technologies is a security testing practice engineered for enterprise resilience. We provide manual-first offensive testing, vulnerability assessments, architecture reviews, and plain-language reporting for applications, networks, cloud estates, and personnel.
+
+---
+
+## Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router, Turbopack)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Validation**: [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/)
+
+---
+
+## Architecture & Routes
 
 ```
 src/
 ├── app/
-│   ├── page.tsx              # Homepage
-│   ├── layout.tsx            # Root layout with fonts & metadata
-│   ├── globals.css           # Global styles & design tokens
-│   ├── actions.ts            # Server actions (contact form)
+│   ├── page.tsx                      # Homepage (Hero, Pulse, Triad, Approach, Why Us, CTA)
+│   ├── layout.tsx                    # Root layout, typography, metadata
+│   ├── globals.css                   # Design tokens, CSS variables, keyframe animations
+│   ├── actions.ts                    # Contact intake server action
 │   ├── solutions/
-│   │   ├── page.tsx          # Solutions & Offerings page
-│   │   └── layout.tsx        # Solutions metadata
+│   │   ├── page.tsx                  # Solutions directory (10 checks, filter bar, trust strip)
+│   │   ├── layout.tsx                # Solutions metadata
+│   │   └── [slug]/
+│   │       └── page.tsx              # Dynamic service pages (Attack console, scan sweeps, coverage rings)
 │   ├── about/
-│   │   ├── page.tsx          # About Us page
-│   │   └── layout.tsx        # About metadata
+│   │   ├── page.tsx                  # About Us (Philosophy, credentials, values)
+│   │   └── layout.tsx                # About metadata
 │   └── blog/
-│       ├── page.tsx          # Blog page (coming soon)
-│       └── layout.tsx        # Blog metadata
+│       ├── page.tsx                  # Engineering field notes & security articles
+│       ├── layout.tsx                # Blog metadata
+│       └── [slug]/
+│           └── page.tsx              # Full article reader
 ├── components/
-│   ├── Navbar.tsx            # Responsive navigation
-│   ├── Hero.tsx              # Hero section with mesh gradient
-│   ├── SecurityPulse.tsx     # ECG monitor visualization
-│   ├── Vitals.tsx            # Attack surface ring indicators
-│   ├── Solutions.tsx         # Solutions/Trainings/Bootcamps triad
-│   ├── SolutionCard.tsx      # Reusable solution card
-│   ├── Approach.tsx          # 4-step engagement process
-│   ├── WhyUs.tsx             # Why BytesEncrypt pillars
-│   ├── ContactSection.tsx    # Contact form with validation
-│   ├── Footer.tsx            # Site footer
-│   └── BrandLogo.tsx         # SVG brand logo
+│   ├── Navbar.tsx                    # Responsive navigation header
+│   ├── Hero.tsx                      # Hero banner with radial mesh
+│   ├── SecurityPulse.tsx             # Real-time SVG pulse ECG monitor
+│   ├── Vitals.tsx                    # Attack surface health rings
+│   ├── Solutions.tsx                 # Triad panel (Solutions / Trainings / Bootcamps)
+│   ├── SolutionCard.tsx              # Category-coded solution cards
+│   ├── Approach.tsx                  # 4-stage engagement stepper
+│   ├── WhyUs.tsx                     # Core pillars
+│   ├── ContactSection.tsx            # Scoping intake form with validation
+│   ├── Footer.tsx                    # Complete footer & company links
+│   └── BrandLogo.tsx                 # SVG brand mark
 └── lib/
-    └── validations.ts        # Zod form schemas
+    ├── solutions-data.ts             # 10 service specifications & interactive widget payloads
+    ├── blog-data.ts                  # Security research articles & field notes
+    └── validations.ts                # Form schemas & validation rules
 ```
 
-## Setup & Running
+---
+
+## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ installed
-- npm 9+ installed
+- Node.js 18.17+ or 20+
+- npm 9+
 
-### Install dependencies
+### Installation
 
 ```bash
 npm install
 ```
 
-### Run development server
+### Development
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -69,51 +87,31 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Build for production
+### Production Build
+
+Create an optimized production build:
 
 ```bash
 npm run build
-```
-
-### Start production server
-
-```bash
 npm start
 ```
 
-### Lint
+### Quality Assurance
 
 ```bash
 npm run lint
 ```
 
-## Features
+---
 
-- **Visual Replication** — Pixel-accurate recreation of bytesencrypt.com
-- **Responsive Design** — Works across all breakpoints (320px–1920px)
-- **Animations** — Framer Motion scroll reveals, ECG wave, pulse dots, ring fills
-- **Form Validation** — React Hook Form + Zod with error/success/loading states
-- **Server Actions** — Next.js server action for contact form
-- **SEO** — Proper metadata, Open Graph tags, semantic HTML
-- **Accessibility** — ARIA labels, focus states, keyboard navigation, semantic structure
-- **Performance** — Server components by default, minimal client-side JS
+## Contact & Security Scoping
 
-## Design Tokens
+- **Email**: [contact@bytesencrypt.com](mailto:contact@bytesencrypt.com)
+- **Phone**: +91 9113962011
+- **Headquarters**: Kalyan Nagar, Bangalore, KAR-560043
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--bg` | `#FCFCFA` | Page background |
-| `--panel` | `#F4F4F8` | Card/section background |
-| `--panel-line` | `#E6E5EF` | Borders |
-| `--ink` | `#13121C` | Primary text / dark sections |
-| `--ink-soft` | `#3F3D52` | Secondary text |
-| `--ink-faint` | `#716F87` | Muted text |
-| `--indigo` | `#5B4CFF` | Primary accent |
-| `--mint` | `#17B978` | Success/monitoring |
-| `--coral` | `#F0483E` | Danger/offensive |
-| `--amber` | `#F2A930` | Warning/advisory |
+---
 
-## Fonts
+## License
 
-- **Display**: Plus Jakarta Sans (400–800)
-- **Mono**: JetBrains Mono (400–600)
+&copy; 2026 BytesEncrypt Technologies Pvt Ltd. All rights reserved.

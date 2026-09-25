@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BytesEncrypt Technologies — Frontend Replication
 
-## Getting Started
+A high-fidelity frontend replication of [bytesencrypt.com](https://bytesencrypt.com/) built with Next.js, TypeScript, React, and Tailwind CSS.
 
-First, run the development server:
+## Technologies Used
+
+- **Next.js 15** — React framework with App Router
+- **TypeScript** — Type-safe development
+- **React 19** — UI component library
+- **Tailwind CSS 4** — Utility-first CSS framework
+- **Framer Motion** — Animations and transitions
+- **Lucide React** — Icon library
+- **React Hook Form** — Form state management
+- **Zod** — Schema validation
+- **@hookform/resolvers** — Zod integration with React Hook Form
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── page.tsx              # Homepage
+│   ├── layout.tsx            # Root layout with fonts & metadata
+│   ├── globals.css           # Global styles & design tokens
+│   ├── actions.ts            # Server actions (contact form)
+│   ├── solutions/
+│   │   ├── page.tsx          # Solutions & Offerings page
+│   │   └── layout.tsx        # Solutions metadata
+│   ├── about/
+│   │   ├── page.tsx          # About Us page
+│   │   └── layout.tsx        # About metadata
+│   └── blog/
+│       ├── page.tsx          # Blog page (coming soon)
+│       └── layout.tsx        # Blog metadata
+├── components/
+│   ├── Navbar.tsx            # Responsive navigation
+│   ├── Hero.tsx              # Hero section with mesh gradient
+│   ├── SecurityPulse.tsx     # ECG monitor visualization
+│   ├── Vitals.tsx            # Attack surface ring indicators
+│   ├── Solutions.tsx         # Solutions/Trainings/Bootcamps triad
+│   ├── SolutionCard.tsx      # Reusable solution card
+│   ├── Approach.tsx          # 4-step engagement process
+│   ├── WhyUs.tsx             # Why BytesEncrypt pillars
+│   ├── ContactSection.tsx    # Contact form with validation
+│   ├── Footer.tsx            # Site footer
+│   └── BrandLogo.tsx         # SVG brand logo
+└── lib/
+    └── validations.ts        # Zod form schemas
+```
+
+## Setup & Running
+
+### Prerequisites
+
+- Node.js 18+ installed
+- npm 9+ installed
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+### Start production server
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Lint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run lint
+```
 
-## Deploy on Vercel
+## Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Visual Replication** — Pixel-accurate recreation of bytesencrypt.com
+- **Responsive Design** — Works across all breakpoints (320px–1920px)
+- **Animations** — Framer Motion scroll reveals, ECG wave, pulse dots, ring fills
+- **Form Validation** — React Hook Form + Zod with error/success/loading states
+- **Server Actions** — Next.js server action for contact form
+- **SEO** — Proper metadata, Open Graph tags, semantic HTML
+- **Accessibility** — ARIA labels, focus states, keyboard navigation, semantic structure
+- **Performance** — Server components by default, minimal client-side JS
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Design Tokens
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--bg` | `#FCFCFA` | Page background |
+| `--panel` | `#F4F4F8` | Card/section background |
+| `--panel-line` | `#E6E5EF` | Borders |
+| `--ink` | `#13121C` | Primary text / dark sections |
+| `--ink-soft` | `#3F3D52` | Secondary text |
+| `--ink-faint` | `#716F87` | Muted text |
+| `--indigo` | `#5B4CFF` | Primary accent |
+| `--mint` | `#17B978` | Success/monitoring |
+| `--coral` | `#F0483E` | Danger/offensive |
+| `--amber` | `#F2A930` | Warning/advisory |
+
+## Fonts
+
+- **Display**: Plus Jakarta Sans (400–800)
+- **Mono**: JetBrains Mono (400–600)

@@ -1,26 +1,149 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #FCFCFA;
+  --panel: #F4F4F8;
+  --panel-line: #E6E5EF;
+  --ink: #13121C;
+  --ink-soft: #3F3D52;
+  --ink-faint: #716F87;
+
+  --indigo: #5B4CFF;
+  --indigo-deep: #4433E0;
+  --indigo-glow: rgba(91, 76, 255, 0.35);
+  --mint: #17B978;
+  --coral: #F0483E;
+  --amber: #F2A930;
+
+  --display: 'Plus Jakarta Sans', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --container: 1180px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--display);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 3px;
+}
+
+.wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ---- Button glow animation ---- */
+@keyframes btnGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--indigo-glow);
+  }
+  50% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+}
+
+/* ---- Mesh drift animation ---- */
+@keyframes meshDrift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(-2%, 2%) scale(1.05);
+  }
+}
+
+/* ---- Ping dot animation ---- */
+@keyframes pingDot {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* ---- ECG scroll animation ---- */
+@keyframes ecgScroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---- Cursor blink animation ---- */
+@keyframes cursorBlink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---- Scan sweep animation ---- */
+@keyframes scanSweep {
+  0% {
+    top: 0;
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.animate-scanSweep {
+  animation: scanSweep 2s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

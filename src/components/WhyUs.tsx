@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ShieldCheck, FileCode, CheckCircle2, Lock } from "lucide-react";
 import { SpotlightCard } from "./SpotlightCard";
-import { EncryptedText } from "./EncryptedText";
 
 interface Pillar {
   title: string;
@@ -70,8 +69,8 @@ export function WhyUs() {
           <div>
             <div className="inline-flex items-center gap-2 mb-2">
               <span className="w-2 h-2 rounded-full bg-[var(--coral)]" />
-              <p className="font-[family-name:var(--font-mono)] text-[15px] font-bold tracking-[0.08em] uppercase text-[var(--coral)]">
-                <EncryptedText text="THE BYTESENCRYPT ADVANTAGE" interval={40} />
+              <p className="font-[family-name:var(--font-mono)] text-[14px] font-bold tracking-[0.08em] uppercase text-[var(--coral)]">
+                THE BYTESENCRYPT ADVANTAGE
               </p>
             </div>
             <h2 className="text-[clamp(2.1rem,3.4vw,2.8rem)] font-extrabold max-w-[20ch] tracking-tight text-[var(--ink)]">

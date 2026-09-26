@@ -175,6 +175,7 @@ export function Vitals() {
         >
           <SpotlightCard
             tiltEffect={true}
+            aria-label={`${vital.title} attack surface health score: ${vital.targetPercent}%`}
             spotlightColor={
               vital.colorName === "indigo"
                 ? "rgba(91, 76, 255, 0.08)"

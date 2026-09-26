@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { SecurityPulse } from "./SecurityPulse";
 import { Vitals } from "./Vitals";
 import { NetworkVisualization } from "./NetworkVisualization";
-import { EncryptedText } from "./EncryptedText";
+import { SignatureEncryptedSignal } from "./SignatureEncryptedSignal";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 
 export function Hero() {
@@ -16,26 +16,25 @@ export function Hero() {
         className="absolute -inset-x-[10%] -top-[10%] h-[680px] z-0 pointer-events-none mesh-bg"
       />
 
-      {/* Subtle grid overlay for depth */}
+      {/* Subtle grid overlay */}
       <div
-        className="absolute inset-0 z-0 pointer-events-none opacity-[0.035]"
+        className="absolute inset-0 z-0 pointer-events-none opacity-[0.03]"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(91,76,255,0.18) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(91,76,255,0.18) 1px, transparent 1px)
+            linear-gradient(rgba(91,76,255,0.15) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(91,76,255,0.15) 1px, transparent 1px)
           `,
           backgroundSize: "64px 64px",
-          animation: "gridFade 1.5s ease-out forwards",
         }}
       />
 
       <div className="wrap relative z-[1] pb-14">
-        {/* Top Kicker Pill with EncryptedText microinteraction */}
+        {/* Top Kicker Pill */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 mb-[18px] bg-[rgba(91,76,255,0.08)] py-2 px-4 rounded-full border border-[rgba(91,76,255,0.12)] shadow-xs"
+          transition={{ duration: 0.4 }}
+          className="inline-flex items-center gap-2 mb-5 bg-[rgba(91,76,255,0.08)] py-2 px-4 rounded-full border border-[rgba(91,76,255,0.12)] shadow-xs"
         >
           <span className="relative w-[7px] h-[7px] rounded-full bg-[var(--mint)]">
             <span
@@ -43,12 +42,8 @@ export function Hero() {
               style={{ animation: "pingDot 1.8s ease-out infinite" }}
             />
           </span>
-          <span className="font-[family-name:var(--font-mono)] text-[14.5px] sm:text-[15.5px] font-semibold tracking-[0.06em] uppercase text-[var(--indigo)]">
-            <EncryptedText
-              text="LIVE SECURITY MONITORING"
-              interval={30}
-              revealDelay={200}
-            />
+          <span className="font-[family-name:var(--font-mono)] text-[14.5px] font-semibold tracking-[0.06em] uppercase text-[var(--indigo)]">
+            Live security monitoring
           </span>
           <span className="text-[var(--ink-faint)] text-xs hidden sm:inline">•</span>
           <span className="text-[var(--ink-soft)] text-xs sm:text-[13px] font-[family-name:var(--font-mono)] hidden sm:inline">
@@ -56,11 +51,11 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* Main Heading */}
+        {/* Dominant Headline */}
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.5, delay: 0.08 }}
           className="text-[clamp(2.6rem,5.2vw,4.4rem)] font-extrabold leading-[1.04] max-w-[17ch] tracking-tight text-[var(--ink)]"
         >
           A{" "}
@@ -70,11 +65,11 @@ export function Hero() {
           for your entire attack surface.
         </motion.h1>
 
-        {/* Supporting description */}
+        {/* Supporting Copy */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.45, delay: 0.16 }}
           className="text-[19px] text-[var(--ink-soft)] max-w-[46ch] mt-6 leading-[1.7]"
         >
           BytesEncrypt Technologies is an offensive security and assurance partner. We monitor for
@@ -82,12 +77,22 @@ export function Hero() {
           exactly what to fix.
         </motion.p>
 
+        {/* BytesEncrypt Original Signature Encrypted Signal Effect (Used Once Here) */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.22 }}
+          className="mt-6"
+        >
+          <SignatureEncryptedSignal />
+        </motion.div>
+
         {/* Action Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex gap-3.5 mt-8 flex-wrap"
+          transition={{ duration: 0.45, delay: 0.28 }}
+          className="flex gap-3.5 mt-7 flex-wrap"
         >
           <Link
             href="#contact"
@@ -106,7 +111,7 @@ export function Hero() {
           </Link>
         </motion.div>
 
-        {/* Signature Interactive Attack Surface Mesh (Hero Visualization) */}
+        {/* Attack-Surface Mesh Visualization (WEB, API, CLOUD, NETWORK, PEOPLE) */}
         <NetworkVisualization />
 
         {/* Command Center Pulse & Vitals */}
@@ -116,4 +121,3 @@ export function Hero() {
     </section>
   );
 }
-

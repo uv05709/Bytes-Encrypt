@@ -1,10 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { Shield, Search, FileText, CheckCircle2, Terminal as TerminalIcon } from "lucide-react";
 import { SpotlightCard } from "./SpotlightCard";
-import { EncryptedText } from "./EncryptedText";
 import { Terminal } from "./Terminal";
 
 interface Step {
@@ -25,7 +24,7 @@ const steps: Step[] = [
     description:
       'We map the attack surface with your engineering leaders — identifying public assets, hidden endpoints, API keys, and defining what "adversary success" looks like before launching payloads.',
     deliverables: ["Asset inventory & shadow API mapping", "Threat model & rules of engagement", "Zero-impact testing window alignment"],
-    icon: <Search size={20} />,
+    icon: <Search size={18} />,
     accentColor: "#5B4CFF",
   },
   {
@@ -35,7 +34,7 @@ const steps: Step[] = [
     description:
       "Deep manual testing led by certified offensive specialists, backed by proprietary exploit scripts — chaining vulnerabilities to prove real-world business impact rather than superficial scanner alerts.",
     deliverables: ["Chained exploit path validation", "Business logic flaw exploitation", "Bypass testing of WAF & MFA controls"],
-    icon: <Shield size={20} />,
+    icon: <Shield size={18} />,
     accentColor: "#F0483E",
   },
   {
@@ -45,7 +44,7 @@ const steps: Step[] = [
     description:
       "Severity-rated findings according to CVSS 3.1, complete with reproducible proof-of-concept videos, code snippets, and plain-language fixes that your developers can implement immediately.",
     deliverables: ["Reproducible step-by-step PoCs", "Executive risk assessment summary", "Direct Slack/Teams triage session"],
-    icon: <FileText size={20} />,
+    icon: <FileText size={18} />,
     accentColor: "#F2A930",
   },
   {
@@ -55,83 +54,98 @@ const steps: Step[] = [
     description:
       "Once fixes ship, our testers retest the exact findings using the same exploit vectors. We confirm true remediation and issue a tamper-evident Letter of Attestation for your auditors and enterprise clients.",
     deliverables: ["Zero-cost retesting pass", "Remediation verification certificate", "Vendor compliance attestation report"],
-    icon: <CheckCircle2 size={20} />,
+    icon: <CheckCircle2 size={18} />,
     accentColor: "#17B978",
   },
 ];
 
 export function Approach() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-80px" });
   const [activeStep, setActiveStep] = useState(0);
+
+  // Scroll progress through the section
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 65%", "end 65%"],
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  useEffect(() => {
+    return scrollYProgress.on("change", (latest) => {
+      if (latest < 0.25) {
+        setActiveStep(0);
+      } else if (latest < 0.5) {
+        setActiveStep(1);
+      } else if (latest < 0.75) {
+        setActiveStep(2);
+      } else {
+        setActiveStep(3);
+      }
+    });
+  }, [scrollYProgress]);
 
   return (
     <section id="approach" className="py-[96px] relative overflow-hidden" ref={containerRef}>
-      {/* Background subtle mesh glow */}
+      {/* Background ambient glow */}
       <div
-        className="absolute -right-[15%] top-[20%] w-[500px] h-[500px] rounded-full pointer-events-none opacity-20 z-0"
+        className="absolute -right-[15%] top-[25%] w-[480px] h-[480px] rounded-full pointer-events-none opacity-15 z-0"
         style={{
-          background: "radial-gradient(circle, rgba(91,76,255,0.25) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(91,76,255,0.2) 0%, transparent 70%)",
         }}
       />
 
       <div className="wrap relative z-10">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="flex justify-between items-end gap-8 mb-[60px] flex-wrap"
-        >
+        <div className="flex justify-between items-end gap-8 mb-[54px] flex-wrap">
           <div>
             <div className="inline-flex items-center gap-2 mb-2">
               <span className="w-2 h-2 rounded-full bg-[var(--indigo)]" />
-              <p className="font-[family-name:var(--font-mono)] text-[15px] font-bold tracking-[0.08em] uppercase text-[var(--indigo)]">
-                <EncryptedText text="ENGAGEMENT METHODOLOGY" interval={40} />
+              <p className="font-[family-name:var(--font-mono)] text-[14px] font-bold tracking-[0.08em] uppercase text-[var(--indigo)]">
+                ENGAGEMENT METHODOLOGY
               </p>
             </div>
             <h2 className="text-[clamp(2.1rem,3.4vw,2.8rem)] font-extrabold max-w-[20ch] tracking-tight text-[var(--ink)]">
               How an engagement runs, start to retest.
             </h2>
           </div>
-          <p className="max-w-[34ch] text-[17.5px] text-[var(--ink-soft)] leading-relaxed">
+          <p className="max-w-[34ch] text-[17px] text-[var(--ink-soft)] leading-relaxed">
             Four disciplined stages, always in this order — no shortcuts, and the retest is always included.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Cinematic Split Layout: Tracing Beam & Timeline on Left/Center, Interactive Terminal on Right */}
+        {/* Cinematic Scroll-Driven Timeline Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Timeline column (Left - 7 cols) */}
+          {/* Timeline column with Tracing Beam (Left - 7 cols) */}
           <div className="lg:col-span-7 relative">
-            {/* Vertical Tracing Beam (Desktop) */}
-            <div className="hidden sm:block absolute left-[27px] top-[24px] bottom-[40px] w-[3px] bg-[var(--panel-line)] z-0 rounded-full overflow-hidden">
+            {/* Desktop Vertical Tracing Beam driven by scroll */}
+            <div className="hidden sm:block absolute left-[26px] top-[28px] bottom-[36px] w-[3px] bg-[var(--panel-line)] z-0 rounded-full overflow-hidden">
               <motion.div
-                className="w-full bg-gradient-to-b from-[var(--indigo)] via-[#F0483E] to-[var(--mint)] rounded-full"
-                initial={{ height: "0%" }}
-                animate={isInView ? { height: "100%" } : { height: "0%" }}
-                transition={{ duration: 1.8, ease: "easeInOut" }}
+                className="w-full h-full bg-gradient-to-b from-[var(--indigo)] via-[#F0483E] to-[var(--mint)] origin-top"
+                style={{ scaleY }}
               />
             </div>
 
-            <div className="space-y-6 sm:space-y-8 relative z-10">
+            <div className="space-y-6 sm:space-y-7 relative z-10">
               {steps.map((step, idx) => {
                 const isActive = activeStep === idx;
 
                 return (
-                  <motion.div
+                  <div
                     key={step.tag}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: idx * 0.12 }}
                     onClick={() => setActiveStep(idx)}
-                    className="cursor-pointer"
+                    className="cursor-pointer transition-all duration-300"
                   >
                     <div className="flex items-start gap-4 sm:gap-6">
                       {/* Tracing Step Indicator Node */}
                       <div
-                        className={`flex-none w-[54px] h-[54px] rounded-2xl flex items-center justify-center transition-all duration-300 font-[family-name:var(--font-mono)] font-bold text-[14px] shadow-sm ${
+                        className={`flex-none w-[52px] h-[52px] rounded-2xl flex items-center justify-center transition-all duration-300 font-[family-name:var(--font-mono)] font-bold text-[14px] shadow-xs ${
                           isActive
-                            ? "bg-[var(--ink)] text-white ring-4 ring-[rgba(91,76,255,0.25)] scale-105"
+                            ? "bg-[var(--ink)] text-white ring-4 ring-[rgba(91,76,255,0.2)] scale-105"
                             : "bg-[var(--panel)] text-[var(--ink-soft)] border border-[var(--panel-line)] hover:border-[var(--indigo)]"
                         }`}
                         style={{
@@ -141,19 +155,19 @@ export function Approach() {
                         {step.tag}
                       </div>
 
-                      {/* Step Details Card */}
+                      {/* Step Details Card with scroll-driven brightness */}
                       <SpotlightCard
-                        spotlightColor={`${step.accentColor}12`}
+                        spotlightColor={`${step.accentColor}10`}
                         borderGlowColor={step.accentColor}
                         className={`flex-1 p-6 sm:p-7 rounded-[22px] border transition-all duration-300 ${
                           isActive
-                            ? "bg-white border-[rgba(91,76,255,0.35)] shadow-[var(--shadow-card-hover)]"
-                            : "bg-[var(--panel)]/70 border-[var(--panel-line)] hover:bg-[var(--panel)]"
+                            ? "bg-white border-[rgba(91,76,255,0.3)] shadow-[var(--shadow-card-hover)] opacity-100"
+                            : "bg-[var(--panel)]/60 border-[var(--panel-line)] hover:bg-[var(--panel)] opacity-75 hover:opacity-100"
                         }`}
                       >
                         <div className="flex items-center justify-between mb-2">
                           <span
-                            className="font-[family-name:var(--font-mono)] text-[12px] font-bold tracking-wider uppercase"
+                            className="font-[family-name:var(--font-mono)] text-[11.5px] font-bold tracking-wider uppercase"
                             style={{ color: step.accentColor }}
                           >
                             {step.subtitle}
@@ -163,11 +177,11 @@ export function Approach() {
                           </span>
                         </div>
 
-                        <h3 className="text-[20px] font-extrabold text-[var(--ink)] mb-2">
+                        <h3 className="text-[19.5px] font-extrabold text-[var(--ink)] mb-2">
                           {step.title}
                         </h3>
 
-                        <p className="text-[15.5px] text-[var(--ink-soft)] leading-relaxed mb-4">
+                        <p className="text-[15px] text-[var(--ink-soft)] leading-relaxed mb-4">
                           {step.description}
                         </p>
 
@@ -185,37 +199,40 @@ export function Approach() {
                         </div>
                       </SpotlightCard>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
           </div>
 
-          {/* Sticky Interactive Terminal on Right (Desktop - 5 cols) */}
-          <div className="lg:col-span-5 lg:sticky lg:top-[100px]">
-            <div className="mb-4">
-              <span className="font-[family-name:var(--font-mono)] text-[12px] font-semibold tracking-wider uppercase text-[var(--ink-faint)] flex items-center gap-1.5">
+          {/* Sticky Visual Console on Right (Desktop - 5 cols) */}
+          <div className="lg:col-span-5 lg:sticky lg:top-[90px]">
+            <div className="mb-3.5 flex items-center justify-between">
+              <span className="font-[family-name:var(--font-mono)] text-[11.5px] font-semibold tracking-wider uppercase text-[var(--ink-faint)] flex items-center gap-1.5">
                 <TerminalIcon size={14} className="text-[var(--indigo)]" />
-                <span>OFFENSIVE TELEMETRY CONSOLE</span>
+                <span>OFFENSIVE AUDIT CONSOLE</span>
+              </span>
+              <span className="font-[family-name:var(--font-mono)] text-[11px] text-[var(--mint)] font-bold">
+                STAGE 0{activeStep + 1} ACTIVE
               </span>
             </div>
 
             <Terminal
               title="bytesencrypt-soc — audit-session-04"
-              className="border border-[rgba(255,255,255,0.12)] shadow-2xl"
+              className="border border-[rgba(255,255,255,0.12)] shadow-xl"
             />
 
             {/* Verification Guarantee Card */}
-            <div className="mt-5 p-5 rounded-[18px] bg-[var(--panel)] border border-[var(--panel-line)] flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[rgba(23,185,120,0.12)] text-[var(--mint)] flex items-center justify-center flex-none font-bold">
-                <CheckCircle2 size={24} />
+            <div className="mt-4 p-4.5 rounded-[18px] bg-[var(--panel)] border border-[var(--panel-line)] flex items-center gap-3.5">
+              <div className="w-11 h-11 rounded-xl bg-[rgba(23,185,120,0.12)] text-[var(--mint)] flex items-center justify-center flex-none font-bold">
+                <CheckCircle2 size={22} />
               </div>
               <div>
-                <h4 className="text-[15px] font-bold text-[var(--ink)]">
+                <h4 className="text-[14.5px] font-bold text-[var(--ink)]">
                   Retest Guaranteed Closure
                 </h4>
-                <p className="text-[13px] text-[var(--ink-soft)] leading-snug mt-0.5">
-                  We verify every patch before signing off. No finding is closed on assumptions.
+                <p className="text-[12.5px] text-[var(--ink-soft)] leading-snug mt-0.5">
+                  Every finding undergoes independent fix validation before signoff.
                 </p>
               </div>
             </div>

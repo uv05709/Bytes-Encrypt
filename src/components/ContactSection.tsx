@@ -7,7 +7,6 @@ import { motion, useInView } from "framer-motion";
 import { contactFormSchema, type ContactFormData } from "@/lib/validations";
 import { submitContactForm } from "@/app/actions";
 import { Send, CheckCircle2, AlertCircle, Lock, Radio, KeyRound } from "lucide-react";
-import { EncryptedText } from "./EncryptedText";
 import { SpotlightCard } from "./SpotlightCard";
 
 export function ContactSection() {
@@ -15,7 +14,7 @@ export function ContactSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const [submissionPhase, setSubmissionPhase] = useState<
-    "idle" | "connecting" | "verifying" | "established" | "error"
+    "idle" | "connecting" | "validating" | "handshake" | "received" | "error"
   >("idle");
   const [statusMessage, setStatusMessage] = useState("");
 
@@ -33,18 +32,20 @@ export function ContactSection() {
     try {
       setSubmissionPhase("connecting");
 
-      // Short aesthetic delay for phase 1 before or during server action
-      const connectionTimer = setTimeout(() => {
-        setSubmissionPhase("verifying");
-      }, 700);
+      const validatingTimer = setTimeout(() => {
+        setSubmissionPhase("validating");
+      }, 500);
 
       const result = await submitContactForm(data);
-      clearTimeout(connectionTimer);
+      clearTimeout(validatingTimer);
 
       if (result.success) {
-        setSubmissionPhase("established");
-        setStatusMessage(result.message);
-        reset();
+        setSubmissionPhase("handshake");
+        setTimeout(() => {
+          setSubmissionPhase("received");
+          setStatusMessage(result.message);
+          reset();
+        }, 600);
       } else {
         setSubmissionPhase("error");
         setStatusMessage(result.message || "Failed to establish channel.");
@@ -76,7 +77,7 @@ export function ContactSection() {
           />
 
           <div className="relative z-[2] grid grid-cols-1 lg:grid-cols-[1fr_1.05fr] gap-12 lg:gap-16 items-start">
-            {/* Left: Security Briefing & Value Proposition */}
+            {/* Left: Security Briefing */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -85,7 +86,7 @@ export function ContactSection() {
               <div className="inline-flex items-center gap-2 mb-4 bg-[rgba(91,76,255,0.15)] py-1.5 px-3.5 rounded-full border border-[rgba(91,76,255,0.3)]">
                 <Lock size={13} className="text-[#9E90FF]" />
                 <span className="font-[family-name:var(--font-mono)] text-[12.5px] font-semibold tracking-wider uppercase text-[#B9AEFF]">
-                  <EncryptedText text="ENCRYPTED INTAKE PIPELINE" interval={35} />
+                  ENCRYPTED INTAKE PIPELINE
                 </span>
               </div>
 
@@ -251,7 +252,7 @@ export function ContactSection() {
                   </div>
 
                   {/* Success State Notification (Only upon real submission success) */}
-                  {submissionPhase === "established" && (
+                  {submissionPhase === "received" && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -259,7 +260,7 @@ export function ContactSection() {
                     >
                       <CheckCircle2 size={18} className="flex-none" />
                       <div>
-                        <div className="font-bold">SECURE CHANNEL ESTABLISHED ✓</div>
+                        <div className="font-bold tracking-wider">REQUEST RECEIVED ✓</div>
                         <div className="text-[12px] opacity-90">{statusMessage}</div>
                       </div>
                     </motion.div>
@@ -276,7 +277,7 @@ export function ContactSection() {
                   {/* Submit Button with Phase State Machine */}
                   <button
                     type="submit"
-                    disabled={isSubmitting || submissionPhase === "connecting" || submissionPhase === "verifying"}
+                    disabled={isSubmitting || submissionPhase === "connecting" || submissionPhase === "validating" || submissionPhase === "handshake"}
                     className="font-[family-name:var(--font-display)] font-bold text-[15.5px] py-3.5 px-6 rounded-full bg-[var(--indigo)] text-white border border-transparent transition-all duration-200 hover:bg-[var(--indigo-deep)] hover:-translate-y-px hover:shadow-[0_8px_24px_-6px_rgba(91,76,255,0.45)] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer w-full flex items-center justify-center gap-2.5 mt-2"
                   >
                     {submissionPhase === "connecting" ? (
@@ -284,14 +285,19 @@ export function ContactSection() {
                         <span className="w-2 h-2 rounded-full bg-white animate-ping" />
                         CONNECTING...
                       </span>
-                    ) : submissionPhase === "verifying" ? (
+                    ) : submissionPhase === "validating" ? (
                       <span className="flex items-center gap-2 font-[family-name:var(--font-mono)] tracking-wider">
                         <span className="w-2 h-2 rounded-full bg-[var(--amber)] animate-ping" />
-                        VERIFYING REQUEST...
+                        VALIDATING REQUEST...
                       </span>
-                    ) : submissionPhase === "established" ? (
+                    ) : submissionPhase === "handshake" ? (
                       <span className="flex items-center gap-2 font-[family-name:var(--font-mono)] tracking-wider text-[var(--mint)]">
-                        SECURE CHANNEL ESTABLISHED ✓
+                        <span className="w-2 h-2 rounded-full bg-[var(--mint)] animate-pulse" />
+                        SECURE CHANNEL...
+                      </span>
+                    ) : submissionPhase === "received" ? (
+                      <span className="flex items-center gap-2 font-[family-name:var(--font-mono)] tracking-wider text-[var(--mint)]">
+                        REQUEST RECEIVED ✓
                       </span>
                     ) : (
                       <>

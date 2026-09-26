@@ -5,7 +5,6 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Shield, BookOpen, Terminal, ArrowRight } from "lucide-react";
 import { SpotlightCard } from "./SpotlightCard";
-import { EncryptedText } from "./EncryptedText";
 
 interface TriadItem {
   title: string;
@@ -73,8 +72,8 @@ export function Solutions() {
           <div className="relative z-10 text-center max-w-[640px] mx-auto mb-12">
             <div className="inline-flex items-center gap-2 mb-3 bg-[rgba(91,76,255,0.15)] py-1.5 px-3.5 rounded-full border border-[rgba(91,76,255,0.3)]">
               <span className="w-2 h-2 rounded-full bg-[var(--mint)]" />
-              <span className="font-[family-name:var(--font-mono)] text-[12px] font-semibold tracking-wider uppercase text-[#B9AEFF]">
-                <EncryptedText text="CAPABILITIES ARCHITECTURE" interval={35} />
+              <span className="font-[family-name:var(--font-mono)] text-[11.5px] font-semibold tracking-wider uppercase text-[#B9AEFF]">
+                CAPABILITIES ARCHITECTURE
               </span>
             </div>
             <h2 className="text-[clamp(2.1rem,3.4vw,2.8rem)] font-extrabold text-white tracking-tight mb-3">

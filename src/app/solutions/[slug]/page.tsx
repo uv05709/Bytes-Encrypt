@@ -32,15 +32,7 @@ export default async function SolutionDetailPage({
       {/* Page Header */}
       <section className="pt-[70px] pb-[50px] relative overflow-hidden">
         <div
-          className="absolute -inset-x-[10%] -top-[10%] h-[620px] z-0 pointer-events-none"
-          style={{
-            background: `
-              radial-gradient(480px 320px at 15% 20%, rgba(91,76,255,.16), transparent 65%),
-              radial-gradient(420px 300px at 85% 10%, rgba(23,185,120,.14), transparent 65%),
-              radial-gradient(380px 280px at 60% 60%, rgba(240,72,62,.08), transparent 65%)
-            `,
-            animation: "meshDrift 16s ease-in-out infinite alternate",
-          }}
+          className="absolute -inset-x-[10%] -top-[10%] h-[620px] z-0 pointer-events-none mesh-bg"
         />
         <div className="wrap relative z-[1]">
           {/* Breadcrumb */}
@@ -59,7 +51,7 @@ export default async function SolutionDetailPage({
           </span>
 
           {/* Title */}
-          <h1 className="text-[clamp(2.4rem,4.8vw,4rem)] font-extrabold leading-[1.08] mt-4 mb-4 flex flex-wrap items-center gap-4">
+          <h1 className="text-[clamp(2.4rem,4.8vw,4rem)] font-extrabold leading-[1.08] mt-4 mb-4 flex flex-wrap items-center gap-4 tracking-tight">
             <span className="w-14 h-14 rounded-[16px] bg-white border border-[var(--panel-line)] flex items-center justify-center shadow-xs flex-none text-[var(--indigo)]">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-7 h-7">
                 <circle cx="12" cy="12" r="9" />
@@ -116,7 +108,9 @@ export default async function SolutionDetailPage({
           {/* Right Column: Category-specific Interactive Widget */}
           <div>
             {solution.category === "offensive" && solution.terminalData && (
-              <div className="bg-[var(--ink)] rounded-[18px] p-6 shadow-xl border border-[rgba(255,255,255,0.08)]">
+              <div className="bg-[var(--ink)] rounded-[18px] p-6 shadow-[var(--shadow-elevated)] border border-[rgba(255,255,255,0.08)] relative overflow-hidden">
+                {/* Ambient glow */}
+                <div className="absolute inset-0 rounded-[18px] pointer-events-none z-0 border border-[rgba(255,255,255,0.05)]" />
                 {/* Console header */}
                 <div className="flex items-center gap-2 mb-5 pb-3 border-b border-[rgba(255,255,255,0.08)]">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F0483E]" />
@@ -212,7 +206,7 @@ export default async function SolutionDetailPage({
             </div>
             <Link
               href="/#contact"
-              className="font-[family-name:var(--font-display)] font-bold text-[15.5px] no-underline inline-flex items-center gap-2 py-3 px-[22px] rounded-full bg-[var(--indigo)] text-white border border-transparent transition-all duration-[220ms] hover:bg-[var(--indigo-deep)] hover:-translate-y-px flex-none"
+              className="font-[family-name:var(--font-display)] font-bold text-[15.5px] no-underline inline-flex items-center gap-2 py-3 px-[22px] rounded-full bg-[var(--indigo)] text-white border border-transparent transition-all duration-[220ms] hover:bg-[var(--indigo-deep)] hover:-translate-y-px hover:shadow-[0_8px_24px_-6px_rgba(91,76,255,0.4)] flex-none"
               style={{ animation: "btnGlow 3s ease-in-out infinite" }}
             >
               Request an assessment

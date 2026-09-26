@@ -24,7 +24,9 @@ const exploitLabels = [
 function EcgSvg() {
   return (
     <svg viewBox="0 -16 800 106" preserveAspectRatio="none" className="h-full w-1/2 flex-none">
-      <path d={ecgPath} fill="none" stroke="#17B978" strokeWidth="2" />
+      <path d={ecgPath} fill="none" stroke="#17B978" strokeWidth="2" opacity="0.8" />
+      {/* Glow layer */}
+      <path d={ecgPath} fill="none" stroke="#17B978" strokeWidth="5" opacity="0.08" />
       {exploitLabels.map((label) => (
         <text
           key={label.x}
@@ -62,18 +64,31 @@ export function SecurityPulse() {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.4 }}
-      className="mt-14 bg-[var(--ink)] rounded-[20px] py-[26px] relative overflow-hidden"
+      className="mt-14 bg-[var(--ink)] rounded-[20px] py-[26px] relative overflow-hidden shadow-[var(--shadow-elevated)]"
     >
+      {/* Ambient glow behind the panel */}
+      <div className="absolute -inset-[2px] rounded-[22px] pointer-events-none z-0 opacity-40"
+        style={{
+          background: "linear-gradient(135deg, rgba(91,76,255,0.12), transparent 50%, rgba(23,185,120,0.08))",
+        }}
+      />
+
+      {/* Subtle inner border glow */}
+      <div className="absolute inset-0 rounded-[20px] pointer-events-none z-[1] border border-[rgba(255,255,255,0.06)]" />
+
       {/* Header */}
-      <div className="flex justify-between items-center px-[26px] pb-[18px] font-[family-name:var(--font-mono)] text-[13px] tracking-[0.08em] uppercase text-[#ACAAC2]">
+      <div className="relative z-[2] flex justify-between items-center px-[26px] pb-[18px] font-[family-name:var(--font-mono)] text-[13px] tracking-[0.08em] uppercase text-[#ACAAC2]">
         <span>Security Pulse — Live Feed</span>
-        <span>
-          <b className="text-[var(--mint)] font-semibold">● </b>Monitoring
+        <span className="flex items-center gap-1.5">
+          <span className="relative w-[7px] h-[7px] rounded-full bg-[var(--mint)]">
+            <span className="absolute -inset-0.5 rounded-full bg-[var(--mint)] opacity-40" style={{ animation: "pingDot 2s ease-out infinite" }} />
+          </span>
+          <span className="text-[var(--mint)] font-semibold">Monitoring</span>
         </span>
       </div>
 
       {/* ECG wave */}
-      <div className="w-full overflow-hidden h-[90px] relative">
+      <div className="relative z-[2] w-full overflow-hidden h-[90px]">
         <div
           className="flex w-[200%] h-full"
           style={{ animation: "ecgScroll 6.4s linear infinite" }}
@@ -85,7 +100,7 @@ export function SecurityPulse() {
 
       {/* Ticker */}
       <p
-        className="px-[26px] pt-4 font-[family-name:var(--font-mono)] text-[14px] text-[var(--mint)] min-h-[18px] transition-opacity duration-300"
+        className="relative z-[2] px-[26px] pt-4 font-[family-name:var(--font-mono)] text-[14px] text-[var(--mint)] min-h-[18px] transition-opacity duration-300"
         style={{ opacity: tickerOpacity }}
       >
         {messages[tickerIdx]}

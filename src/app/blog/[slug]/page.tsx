@@ -25,15 +25,7 @@ export default async function BlogPostPage({
     <>
       <section className="pt-[70px] pb-[50px] relative overflow-hidden">
         <div
-          className="absolute -inset-x-[10%] -top-[10%] h-[620px] z-0 pointer-events-none"
-          style={{
-            background: `
-              radial-gradient(480px 320px at 15% 20%, rgba(91,76,255,.16), transparent 65%),
-              radial-gradient(420px 300px at 85% 10%, rgba(23,185,120,.14), transparent 65%),
-              radial-gradient(380px 280px at 60% 60%, rgba(240,72,62,.08), transparent 65%)
-            `,
-            animation: "meshDrift 16s ease-in-out infinite alternate",
-          }}
+          className="absolute -inset-x-[10%] -top-[10%] h-[620px] z-0 pointer-events-none mesh-bg"
         />
         <div className="wrap relative z-[1]">
           <Link
@@ -53,7 +45,7 @@ export default async function BlogPostPage({
             <span>{post.readTime}</span>
           </div>
 
-          <h1 className="text-[clamp(2.2rem,4.4vw,3.6rem)] font-extrabold leading-[1.12] max-w-[24ch] text-[var(--ink)] mb-6">
+          <h1 className="text-[clamp(2.2rem,4.4vw,3.6rem)] font-extrabold leading-[1.12] max-w-[24ch] text-[var(--ink)] mb-6 tracking-tight">
             {post.title}
           </h1>
 
@@ -84,7 +76,7 @@ export default async function BlogPostPage({
             </div>
             <Link
               href="/#contact"
-              className="font-[family-name:var(--font-display)] font-bold text-[14.5px] py-2.5 px-5 rounded-full bg-[var(--indigo)] text-white hover:bg-[var(--indigo-deep)] transition-all flex-none no-underline"
+              className="font-[family-name:var(--font-display)] font-bold text-[14.5px] py-2.5 px-5 rounded-full bg-[var(--indigo)] text-white hover:bg-[var(--indigo-deep)] hover:shadow-[0_8px_24px_-6px_rgba(91,76,255,0.4)] transition-all flex-none no-underline"
             >
               Request an assessment
             </Link>

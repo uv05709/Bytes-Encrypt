@@ -60,7 +60,7 @@ export function WhyUs() {
             <p className="font-[family-name:var(--font-mono)] text-[16.5px] font-bold tracking-[0.08em] uppercase text-[var(--coral)] mb-2">
               Why BytesEncrypt
             </p>
-            <h2 className="text-[clamp(1.9rem,3.2vw,2.6rem)] font-extrabold max-w-[20ch]">
+            <h2 className="text-[clamp(1.9rem,3.2vw,2.6rem)] font-extrabold max-w-[20ch] tracking-tight">
               Clarity, not just a scan report
             </h2>
           </div>
@@ -76,12 +76,12 @@ export function WhyUs() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.1 + i * 0.12 }}
-              className="bg-[var(--panel)] border border-[var(--panel-line)] rounded-[16px] p-7 hover:border-[var(--indigo)] transition-colors duration-200"
+              className="bg-[var(--panel)] border border-[var(--panel-line)] rounded-[16px] p-7 hover:border-[var(--indigo)] hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-0.5 transition-all duration-300 group"
             >
-              <div className="w-10 h-10 rounded-[10px] bg-[rgba(91,76,255,0.1)] flex items-center justify-center mb-5 text-[var(--indigo)]">
+              <div className="w-10 h-10 rounded-[10px] bg-[rgba(91,76,255,0.1)] flex items-center justify-center mb-5 text-[var(--indigo)] group-hover:bg-[rgba(91,76,255,0.15)] group-hover:scale-105 transition-all duration-300">
                 {pillar.icon}
               </div>
-              <h4 className="text-[15.5px] font-bold mb-2">{pillar.title}</h4>
+              <h4 className="text-[15.5px] font-bold mb-2 group-hover:text-[var(--indigo)] transition-colors duration-200">{pillar.title}</h4>
               <p className="text-[15px] text-[var(--ink-soft)] leading-relaxed">
                 {pillar.description}
               </p>

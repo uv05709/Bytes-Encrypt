@@ -56,30 +56,25 @@ export function Solutions() {
   return (
     <section className="py-[92px]">
       <div className="wrap" ref={ref}>
-        <div className="bg-[var(--ink)] rounded-[28px] p-8 md:p-14 relative overflow-hidden">
+        <div className="bg-[var(--ink)] rounded-[28px] p-8 md:p-14 relative overflow-hidden shadow-[var(--shadow-elevated)]">
           {/* Mesh background */}
           <div
-            className="absolute -inset-x-[10%] -top-[30%] h-[100%] z-0 pointer-events-none opacity-45"
-            style={{
-              background: `
-                radial-gradient(480px 320px at 15% 20%, rgba(91,76,255,.16), transparent 65%),
-                radial-gradient(420px 300px at 85% 10%, rgba(23,185,120,.14), transparent 65%),
-                radial-gradient(380px 280px at 60% 60%, rgba(240,72,62,.08), transparent 65%)
-              `,
-              animation: "meshDrift 16s ease-in-out infinite alternate",
-            }}
+            className="absolute -inset-x-[10%] -top-[30%] h-[100%] z-0 pointer-events-none opacity-45 mesh-bg"
           />
 
-          <div className="relative z-[1] grid grid-cols-1 md:grid-cols-3 gap-5">
+          {/* Subtle inner border */}
+          <div className="absolute inset-0 rounded-[28px] pointer-events-none z-[1] border border-[rgba(255,255,255,0.05)]" />
+
+          <div className="relative z-[2] grid grid-cols-1 md:grid-cols-3 gap-5">
             {triadItems.map((item, i) => {
               const content = (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.55, delay: i * 0.12 }}
-                  className="bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-[16px] p-9 text-center hover:border-[rgba(139,124,255,0.4)] hover:bg-[rgba(255,255,255,0.05)] transition-all duration-300 group h-full flex flex-col items-center"
+                  className="bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-[16px] p-9 text-center hover:border-[rgba(139,124,255,0.4)] hover:bg-[rgba(255,255,255,0.05)] hover:shadow-[0_8px_32px_-8px_rgba(91,76,255,0.15)] transition-all duration-300 group h-full flex flex-col items-center"
                 >
-                  <div className="w-16 h-16 rounded-[16px] bg-gradient-to-br from-[var(--indigo)] to-[#7A6BFF] text-white flex items-center justify-center mx-auto mb-5 shadow-[0_10px_22px_-8px_rgba(91,76,255,0.55)] group-hover:scale-105 group-hover:-rotate-3 transition-transform">
+                  <div className="w-16 h-16 rounded-[16px] bg-gradient-to-br from-[var(--indigo)] to-[#7A6BFF] text-white flex items-center justify-center mx-auto mb-5 shadow-[0_10px_22px_-8px_rgba(91,76,255,0.55)] group-hover:scale-105 group-hover:-rotate-3 transition-transform duration-300">
                     {item.icon}
                   </div>
                   <h3 className="text-[var(--mint)] font-extrabold text-[20.5px] mb-3">

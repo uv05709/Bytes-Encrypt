@@ -9,13 +9,14 @@ interface VitalData {
   color: string;
   strokeColor: string;
   dashoffset: number;
+  percentage: string;
 }
 
 const vitals: VitalData[] = [
-  { title: "Application", subtitle: "WEB · API · MOBILE", color: "indigo", strokeColor: "var(--indigo)", dashoffset: 24 },
-  { title: "Network", subtitle: "INFRA · WI-FI · EDGE", color: "mint", strokeColor: "var(--mint)", dashoffset: 24 },
-  { title: "Cloud", subtitle: "AWS · AZURE · GCP", color: "coral", strokeColor: "var(--coral)", dashoffset: 24 },
-  { title: "People", subtitle: "PHISHING · SOCIAL ENG.", color: "amber", strokeColor: "var(--amber)", dashoffset: 24 },
+  { title: "Application", subtitle: "WEB · API · MOBILE", color: "indigo", strokeColor: "var(--indigo)", dashoffset: 24, percentage: "89%" },
+  { title: "Network", subtitle: "INFRA · WI-FI · EDGE", color: "mint", strokeColor: "var(--mint)", dashoffset: 24, percentage: "89%" },
+  { title: "Cloud", subtitle: "AWS · AZURE · GCP", color: "coral", strokeColor: "var(--coral)", dashoffset: 24, percentage: "89%" },
+  { title: "People", subtitle: "PHISHING · SOCIAL ENG.", color: "amber", strokeColor: "var(--amber)", dashoffset: 24, percentage: "89%" },
 ];
 
 function VitalRing({ strokeColor, dashoffset, isVisible }: { strokeColor: string; dashoffset: number; isVisible: boolean }) {
@@ -28,6 +29,24 @@ function VitalRing({ strokeColor, dashoffset, isVisible }: { strokeColor: string
         fill="none"
         strokeWidth="6"
         stroke="var(--panel-line)"
+      />
+      {/* Glow layer */}
+      <circle
+        cx="40"
+        cy="40"
+        r="35"
+        fill="none"
+        strokeWidth="10"
+        stroke={strokeColor}
+        strokeLinecap="round"
+        strokeDasharray="220"
+        strokeDashoffset={isVisible ? dashoffset : 220}
+        opacity="0.12"
+        style={{
+          transform: "rotate(-90deg)",
+          transformOrigin: "center",
+          transition: "stroke-dashoffset 1.4s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
       />
       <circle
         cx="40"
@@ -75,10 +94,10 @@ export function Vitals() {
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: i * 0.1 }}
-          className="bg-[var(--panel)] border border-[var(--panel-line)] rounded-[16px] py-[22px] px-[18px] text-center"
+          className="bg-[var(--panel)] border border-[var(--panel-line)] rounded-[16px] py-[22px] px-[18px] text-center hover:border-[rgba(91,76,255,0.2)] hover:shadow-[var(--shadow-card)] transition-all duration-300 group"
         >
           <VitalRing strokeColor={vital.strokeColor} dashoffset={vital.dashoffset} isVisible={isVisible} />
-          <h4 className="text-[15.5px] font-bold mb-1">{vital.title}</h4>
+          <h4 className="text-[15.5px] font-bold mb-1 group-hover:text-[var(--indigo)] transition-colors duration-200">{vital.title}</h4>
           <p className="font-[family-name:var(--font-mono)] text-[13px] text-[var(--ink-faint)]">
             {vital.subtitle}
           </p>

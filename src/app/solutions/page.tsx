@@ -34,22 +34,14 @@ export default function SolutionsPage() {
       {/* Page header */}
       <section className="pt-[70px] pb-[50px] relative overflow-hidden">
         <div
-          className="absolute -inset-x-[10%] -top-[10%] h-[620px] z-0 pointer-events-none"
-          style={{
-            background: `
-              radial-gradient(480px 320px at 15% 20%, rgba(91,76,255,.16), transparent 65%),
-              radial-gradient(420px 300px at 85% 10%, rgba(23,185,120,.14), transparent 65%),
-              radial-gradient(380px 280px at 60% 60%, rgba(240,72,62,.08), transparent 65%)
-            `,
-            animation: "meshDrift 16s ease-in-out infinite alternate",
-          }}
+          className="absolute -inset-x-[10%] -top-[10%] h-[620px] z-0 pointer-events-none mesh-bg"
         />
         <div className="wrap relative z-[1]">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="font-[family-name:var(--font-mono)] text-[16.5px] font-semibold tracking-[0.08em] uppercase text-[var(--indigo)] inline-flex items-center gap-2 mb-[18px] bg-[rgba(91,76,255,0.08)] py-2 px-4 rounded-full"
+            className="font-[family-name:var(--font-mono)] text-[16.5px] font-semibold tracking-[0.08em] uppercase text-[var(--indigo)] inline-flex items-center gap-2 mb-[18px] bg-[rgba(91,76,255,0.08)] py-2 px-4 rounded-full border border-[rgba(91,76,255,0.1)]"
           >
             <span className="relative w-[7px] h-[7px] rounded-full bg-[var(--mint)]">
               <span className="absolute -inset-1 rounded-full border-[1.5px] border-[var(--mint)]" style={{ animation: "pingDot 1.8s ease-out infinite" }} />
@@ -60,7 +52,7 @@ export default function SolutionsPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[clamp(2.6rem,5.2vw,4.4rem)] font-extrabold leading-[1.04] max-w-[16ch]"
+            className="text-[clamp(2.6rem,5.2vw,4.4rem)] font-extrabold leading-[1.04] max-w-[16ch] tracking-tight"
           >
             Ten checks across your{" "}
             <span className="bg-gradient-to-r from-[var(--indigo)] via-[#9E90FF] to-[var(--indigo)] bg-clip-text text-transparent">
@@ -92,7 +84,7 @@ export default function SolutionsPage() {
               <p className="font-[family-name:var(--font-mono)] text-[16.5px] font-bold tracking-[0.08em] uppercase text-[var(--coral)] mb-2">
                 Solutions &amp; Offerings
               </p>
-              <h2 className="text-[clamp(1.9rem,3.2vw,2.6rem)] font-extrabold max-w-[20ch]">
+              <h2 className="text-[clamp(1.9rem,3.2vw,2.6rem)] font-extrabold max-w-[20ch] tracking-tight">
                 Ten checks across your attack surface
               </h2>
             </div>
@@ -157,7 +149,7 @@ export default function SolutionsPage() {
             </div>
             <Link
               href="/#contact"
-              className="font-[family-name:var(--font-display)] font-bold text-[15.5px] no-underline inline-flex items-center gap-2 py-3 px-[22px] rounded-full bg-[var(--indigo)] text-white border border-transparent transition-all duration-[220ms] hover:bg-[var(--indigo-deep)] hover:-translate-y-px flex-none"
+              className="font-[family-name:var(--font-display)] font-bold text-[15.5px] no-underline inline-flex items-center gap-2 py-3 px-[22px] rounded-full bg-[var(--indigo)] text-white border border-transparent transition-all duration-[220ms] hover:bg-[var(--indigo-deep)] hover:-translate-y-px hover:shadow-[0_8px_24px_-6px_rgba(91,76,255,0.4)] flex-none"
               style={{ animation: "btnGlow 3s ease-in-out infinite" }}
             >
               Request an assessment

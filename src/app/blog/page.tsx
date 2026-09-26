@@ -14,22 +14,14 @@ export default function BlogPage() {
       {/* Page header */}
       <section className="pt-[70px] pb-[50px] relative overflow-hidden">
         <div
-          className="absolute -inset-x-[10%] -top-[10%] h-[620px] z-0 pointer-events-none"
-          style={{
-            background: `
-              radial-gradient(480px 320px at 15% 20%, rgba(91,76,255,.16), transparent 65%),
-              radial-gradient(420px 300px at 85% 10%, rgba(23,185,120,.14), transparent 65%),
-              radial-gradient(380px 280px at 60% 60%, rgba(240,72,62,.08), transparent 65%)
-            `,
-            animation: "meshDrift 16s ease-in-out infinite alternate",
-          }}
+          className="absolute -inset-x-[10%] -top-[10%] h-[620px] z-0 pointer-events-none mesh-bg"
         />
         <div className="wrap relative z-[1]">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="font-[family-name:var(--font-mono)] text-[16.5px] font-semibold tracking-[0.08em] uppercase text-[var(--indigo)] inline-flex items-center gap-2 mb-[18px] bg-[rgba(91,76,255,0.08)] py-2 px-4 rounded-full"
+            className="font-[family-name:var(--font-mono)] text-[16.5px] font-semibold tracking-[0.08em] uppercase text-[var(--indigo)] inline-flex items-center gap-2 mb-[18px] bg-[rgba(91,76,255,0.08)] py-2 px-4 rounded-full border border-[rgba(91,76,255,0.1)]"
           >
             <span className="relative w-[7px] h-[7px] rounded-full bg-[var(--mint)]">
               <span className="absolute -inset-1 rounded-full border-[1.5px] border-[var(--mint)]" style={{ animation: "pingDot 1.8s ease-out infinite" }} />
@@ -40,7 +32,7 @@ export default function BlogPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[clamp(2.6rem,5.2vw,4.4rem)] font-extrabold leading-[1.04] max-w-[20ch]"
+            className="text-[clamp(2.6rem,5.2vw,4.4rem)] font-extrabold leading-[1.04] max-w-[20ch] tracking-tight"
           >
             Notes from{" "}
             <span className="bg-gradient-to-r from-[var(--indigo)] via-[#9E90FF] to-[var(--indigo)] bg-clip-text text-transparent">
@@ -66,21 +58,15 @@ export default function BlogPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-[var(--ink)] rounded-[24px] p-8 md:p-11 relative overflow-hidden text-white"
+            className="bg-[var(--ink)] rounded-[24px] p-8 md:p-11 relative overflow-hidden text-white shadow-[var(--shadow-elevated)]"
           >
+            {/* Inner border glow */}
+            <div className="absolute inset-0 rounded-[24px] pointer-events-none z-[1] border border-[rgba(255,255,255,0.05)]" />
             {/* Mesh */}
             <div
-              className="absolute -inset-x-[10%] -top-[30%] h-[100%] z-0 pointer-events-none opacity-50"
-              style={{
-                background: `
-                  radial-gradient(480px 320px at 15% 20%, rgba(91,76,255,.16), transparent 65%),
-                  radial-gradient(420px 300px at 85% 10%, rgba(23,185,120,.14), transparent 65%),
-                  radial-gradient(380px 280px at 60% 60%, rgba(240,72,62,.08), transparent 65%)
-                `,
-                animation: "meshDrift 16s ease-in-out infinite alternate",
-              }}
+              className="absolute -inset-x-[10%] -top-[30%] h-[100%] z-0 pointer-events-none opacity-50 mesh-bg"
             />
-            <div className="relative z-[1] max-w-[68ch]">
+            <div className="relative z-[2] max-w-[68ch]">
               <div className="flex items-center gap-2.5 font-[family-name:var(--font-mono)] text-[12.5px] uppercase tracking-[0.06em] text-[#BFBDD2] mb-3.5">
                 <span>{featured.date}</span>
                 <span className="w-1 h-1 rounded-full bg-[#BFBDD2]" />
@@ -111,7 +97,7 @@ export default function BlogPage() {
         <div className="wrap">
           <div className="flex justify-between items-end gap-8 mb-[36px] flex-wrap">
             <div>
-              <h2 className="text-[clamp(1.9rem,3.2vw,2.6rem)] font-extrabold">All posts</h2>
+              <h2 className="text-[clamp(1.9rem,3.2vw,2.6rem)] font-extrabold tracking-tight">All posts</h2>
             </div>
             <p className="max-w-[34ch] text-[17px] text-[var(--ink-soft)]">
               New posts as engagements turn up something worth sharing — check back regularly.
@@ -125,7 +111,7 @@ export default function BlogPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="bg-[var(--panel)] border border-[var(--panel-line)] rounded-[18px] overflow-hidden flex flex-col justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-200 group"
+                className="bg-[var(--panel)] border border-[var(--panel-line)] rounded-[18px] overflow-hidden flex flex-col justify-between hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1 hover:border-[rgba(91,76,255,0.2)] transition-all duration-300 group"
               >
                 <Link href={`/blog/${post.slug}`} className="no-underline flex flex-col h-full justify-between">
                   <div className="p-6 pb-2">

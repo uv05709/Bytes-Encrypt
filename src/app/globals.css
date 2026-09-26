@@ -18,6 +18,13 @@
   --display: 'Plus Jakarta Sans', sans-serif;
   --mono: 'JetBrains Mono', monospace;
   --container: 1180px;
+
+  /* Premium shadows */
+  --shadow-card: 0 1px 3px rgba(19,18,28,0.04), 0 4px 16px rgba(19,18,28,0.04);
+  --shadow-card-hover: 0 8px 32px rgba(91,76,255,0.10), 0 2px 8px rgba(19,18,28,0.06);
+  --shadow-elevated: 0 16px 48px rgba(19,18,28,0.10), 0 4px 12px rgba(19,18,28,0.06);
+  --shadow-glow-indigo: 0 0 40px rgba(91,76,255,0.15), 0 0 80px rgba(91,76,255,0.06);
+  --shadow-glow-mint: 0 0 40px rgba(23,185,120,0.12), 0 0 80px rgba(23,185,120,0.05);
 }
 
 * {
@@ -70,6 +77,15 @@ p {
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 32px;
+}
+
+/* ---- Premium mesh gradient background ---- */
+.mesh-bg {
+  background:
+    radial-gradient(480px 320px at 15% 20%, rgba(91,76,255,.16), transparent 65%),
+    radial-gradient(420px 300px at 85% 10%, rgba(23,185,120,.14), transparent 65%),
+    radial-gradient(380px 280px at 60% 60%, rgba(240,72,62,.08), transparent 65%);
+  animation: meshDrift 16s ease-in-out infinite alternate;
 }
 
 /* ---- Button glow animation ---- */
@@ -136,6 +152,65 @@ p {
 
 .animate-scanSweep {
   animation: scanSweep 2s ease-in-out infinite alternate;
+}
+
+/* ---- Floating navbar border glow ---- */
+@keyframes navGlow {
+  0%, 100% {
+    border-color: rgba(230, 229, 239, 0.6);
+  }
+  50% {
+    border-color: rgba(91, 76, 255, 0.15);
+  }
+}
+
+/* ---- Subtle fade in up for sections ---- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Glow pulse for ambient background effects ---- */
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* ---- Grid line animation ---- */
+@keyframes gridFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.04;
+  }
+}
+
+/* ---- Shimmer effect for premium elements ---- */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ---- Ring fill animation ---- */
+@keyframes ringFill {
+  from {
+    stroke-dashoffset: 220;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

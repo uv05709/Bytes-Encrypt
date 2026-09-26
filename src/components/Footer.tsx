@@ -58,14 +58,19 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--ink)] text-white pt-16 pb-8">
-      <div className="wrap">
+    <footer className="bg-[var(--ink)] text-white pt-16 pb-8 relative overflow-hidden">
+      {/* Subtle mesh gradient at the top */}
+      <div
+        className="absolute -inset-x-[10%] -top-[60%] h-[60%] z-0 pointer-events-none opacity-30 mesh-bg"
+      />
+
+      <div className="wrap relative z-[1]">
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1.2fr] gap-10 md:gap-16 pb-10 border-b border-[rgba(255,255,255,0.08)]">
           {/* Brand column */}
           <div>
-            <Link href="/" className="flex items-center gap-2.5 no-underline mb-4">
+            <Link href="/" className="flex items-center gap-2.5 no-underline mb-4 group">
               <BrandLogo footer />
-              <span className="font-[family-name:var(--font-display)] font-extrabold text-[20.5px] text-white tracking-[-0.01em] leading-none">
+              <span className="font-[family-name:var(--font-display)] font-extrabold text-[20.5px] text-white tracking-[-0.01em] leading-none group-hover:text-[#B9AEFF] transition-colors duration-200">
                 BytesEncrypt
                 <small className="block font-[family-name:var(--font-mono)] font-normal text-[11px] tracking-[0.14em] text-[#716F87] mt-1 uppercase">
                   Technologies Pvt Ltd
@@ -85,7 +90,7 @@ export function Footer() {
                   title={social.title}
                   target="_blank"
                   rel="noopener"
-                  className="w-9 h-9 rounded-[10px] bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center text-[#ACAAC2] hover:text-[var(--indigo)] hover:border-[var(--indigo)] transition-colors"
+                  className="w-9 h-9 rounded-[10px] bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center text-[#ACAAC2] hover:text-[var(--indigo)] hover:border-[var(--indigo)] hover:bg-[rgba(91,76,255,0.08)] transition-all duration-200"
                 >
                   <div className="w-[18px] h-[18px]">{social.icon}</div>
                 </a>
@@ -103,7 +108,7 @@ export function Footer() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-[15px] text-[#ACAAC2] no-underline hover:text-white transition-colors"
+                  className="text-[15px] text-[#ACAAC2] no-underline hover:text-white hover:translate-x-0.5 transition-all duration-200"
                 >
                   {link.label}
                 </Link>
@@ -117,20 +122,20 @@ export function Footer() {
               Contact
             </h5>
             <div className="flex flex-col gap-3">
-              <p className="text-[15px] text-[#ACAAC2] flex items-start gap-2">
+              <p className="text-[15px] text-[#ACAAC2] flex items-start gap-2 hover:text-white transition-colors duration-200">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="mt-1 flex-none">
                   <rect x="3" y="5" width="18" height="14" rx="2" />
                   <path d="m3 7 9 6 9-6" />
                 </svg>
                 Email: contact@bytesencrypt.com
               </p>
-              <p className="text-[15px] text-[#ACAAC2] flex items-start gap-2">
+              <p className="text-[15px] text-[#ACAAC2] flex items-start gap-2 hover:text-white transition-colors duration-200">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="mt-1 flex-none">
                   <path d="M4 5c0 8.3 6.7 15 15 15l2.5-3.5-5-2-1.5 2A12 12 0 0 1 7.5 9l2-1.5-2-5L4 5Z" />
                 </svg>
                 Phone: +91 9113962011
               </p>
-              <p className="text-[15px] text-[#ACAAC2] flex items-start gap-2">
+              <p className="text-[15px] text-[#ACAAC2] flex items-start gap-2 hover:text-white transition-colors duration-200">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="mt-1 flex-none">
                   <path d="M12 21s7-6.1 7-11.3A7 7 0 0 0 5 9.7C5 14.9 12 21 12 21Z" />
                   <circle cx="12" cy="9.5" r="2.3" />
@@ -147,13 +152,13 @@ export function Footer() {
             © BytesEncrypt Technologies Pvt Ltd — 2026 — Confidential
           </span>
           <div className="flex gap-6">
-            <Link href="/#approach" className="text-[13px] text-[#716F87] no-underline hover:text-white transition-colors">
+            <Link href="/#approach" className="text-[13px] text-[#716F87] no-underline hover:text-white transition-colors duration-200">
               Approach
             </Link>
-            <Link href="/#why" className="text-[13px] text-[#716F87] no-underline hover:text-white transition-colors">
+            <Link href="/#why" className="text-[13px] text-[#716F87] no-underline hover:text-white transition-colors duration-200">
               Why Us
             </Link>
-            <Link href="/#contact" className="text-[13px] text-[#716F87] no-underline hover:text-white transition-colors">
+            <Link href="/#contact" className="text-[13px] text-[#716F87] no-underline hover:text-white transition-colors duration-200">
               Contact
             </Link>
           </div>

@@ -94,22 +94,14 @@ export default function AboutPage() {
       {/* Page header */}
       <section className="pt-[70px] pb-[50px] relative overflow-hidden">
         <div
-          className="absolute -inset-x-[10%] -top-[10%] h-[620px] z-0 pointer-events-none"
-          style={{
-            background: `
-              radial-gradient(480px 320px at 15% 20%, rgba(91,76,255,.16), transparent 65%),
-              radial-gradient(420px 300px at 85% 10%, rgba(23,185,120,.14), transparent 65%),
-              radial-gradient(380px 280px at 60% 60%, rgba(240,72,62,.08), transparent 65%)
-            `,
-            animation: "meshDrift 16s ease-in-out infinite alternate",
-          }}
+          className="absolute -inset-x-[10%] -top-[10%] h-[620px] z-0 pointer-events-none mesh-bg"
         />
         <div className="wrap relative z-[1]">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="font-[family-name:var(--font-mono)] text-[16.5px] font-semibold tracking-[0.08em] uppercase text-[var(--indigo)] inline-flex items-center gap-2 mb-[18px] bg-[rgba(91,76,255,0.08)] py-2 px-4 rounded-full"
+            className="font-[family-name:var(--font-mono)] text-[16.5px] font-semibold tracking-[0.08em] uppercase text-[var(--indigo)] inline-flex items-center gap-2 mb-[18px] bg-[rgba(91,76,255,0.08)] py-2 px-4 rounded-full border border-[rgba(91,76,255,0.1)]"
           >
             <span className="relative w-[7px] h-[7px] rounded-full bg-[var(--mint)]">
               <span className="absolute -inset-1 rounded-full border-[1.5px] border-[var(--mint)]" style={{ animation: "pingDot 1.8s ease-out infinite" }} />
@@ -120,7 +112,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[clamp(2.6rem,5.2vw,4.4rem)] font-extrabold leading-[1.04] max-w-[20ch]"
+            className="text-[clamp(2.6rem,5.2vw,4.4rem)] font-extrabold leading-[1.04] max-w-[20ch] tracking-tight"
           >
             Security testing, run by people who&apos;d rather{" "}
             <span className="bg-gradient-to-r from-[var(--indigo)] via-[#9E90FF] to-[var(--indigo)] bg-clip-text text-transparent">
@@ -224,7 +216,7 @@ export default function AboutPage() {
               <p className="font-[family-name:var(--font-mono)] text-[16.5px] font-bold tracking-[0.08em] uppercase text-[var(--indigo)] mb-2">
                 Our Team
               </p>
-              <h2 className="text-[clamp(1.9rem,3.2vw,2.6rem)] font-extrabold max-w-[20ch]">
+              <h2 className="text-[clamp(1.9rem,3.2vw,2.6rem)] font-extrabold max-w-[20ch] tracking-tight">
                 Certified, not just capable
               </h2>
             </div>
@@ -233,26 +225,19 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="bg-[var(--ink)] rounded-[28px] p-8 md:p-12 relative overflow-hidden">
+          <div className="bg-[var(--ink)] rounded-[28px] p-8 md:p-12 relative overflow-hidden shadow-[var(--shadow-elevated)]">
             <div
-              className="absolute -inset-x-[10%] -top-[30%] h-[100%] z-0 pointer-events-none opacity-45"
-              style={{
-                background: `
-                  radial-gradient(480px 320px at 15% 20%, rgba(91,76,255,.16), transparent 65%),
-                  radial-gradient(420px 300px at 85% 10%, rgba(23,185,120,.14), transparent 65%),
-                  radial-gradient(380px 280px at 60% 60%, rgba(240,72,62,.08), transparent 65%)
-                `,
-                animation: "meshDrift 16s ease-in-out infinite alternate",
-              }}
+              className="absolute -inset-x-[10%] -top-[30%] h-[100%] z-0 pointer-events-none opacity-45 mesh-bg"
             />
-            <div className="relative z-[1] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="absolute inset-0 rounded-[28px] pointer-events-none z-[1] border border-[rgba(255,255,255,0.05)]" />
+            <div className="relative z-[2] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {credentials.map((cred, i) => (
                 <motion.div
                   key={cred.badge}
                   initial={{ opacity: 0, y: 20 }}
                   animate={credInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.1 + i * 0.08 }}
-                  className="bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-[16px] p-6 flex gap-4 items-start hover:border-[rgba(139,124,255,0.4)] transition-colors group"
+                  className="bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-[16px] p-6 flex gap-4 items-start hover:border-[rgba(139,124,255,0.4)] hover:bg-[rgba(255,255,255,0.05)] hover:shadow-[0_8px_32px_-8px_rgba(91,76,255,0.15)] transition-all duration-300 group"
                 >
                   <div className="w-14 h-14 rounded-[14px] bg-gradient-to-br from-[var(--indigo)] to-[#7A6BFF] text-white flex items-center justify-center font-[family-name:var(--font-mono)] font-bold text-[13px] shadow-[0_10px_20px_-8px_rgba(91,76,255,0.55)] flex-none group-hover:scale-105 group-hover:-rotate-3 transition-transform">
                     {cred.badge}
@@ -269,7 +254,7 @@ export default function AboutPage() {
                 </motion.div>
               ))}
             </div>
-            <p className="relative z-[1] text-[15px] text-[#BFBDD2] mt-8 text-center leading-relaxed max-w-[70ch] mx-auto">
+            <p className="relative z-[2] text-[15px] text-[#BFBDD2] mt-8 text-center leading-relaxed max-w-[70ch] mx-auto">
               Certifications represent the individual credentials held across BytesEncrypt&apos;s core testing team.
               Every engagement is staffed by or directly reviewed by an OSCP-certified lead.
             </p>
@@ -290,7 +275,7 @@ export default function AboutPage() {
               <p className="font-[family-name:var(--font-mono)] text-[16.5px] font-bold tracking-[0.08em] uppercase text-[var(--coral)] mb-2">
                 What We Stand For
               </p>
-              <h2 className="text-[clamp(1.9rem,3.2vw,2.6rem)] font-extrabold max-w-[20ch]">
+              <h2 className="text-[clamp(1.9rem,3.2vw,2.6rem)] font-extrabold max-w-[20ch] tracking-tight">
                 Four things we don&apos;t compromise on
               </h2>
             </div>
@@ -306,12 +291,12 @@ export default function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={valuesInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.1 + i * 0.1 }}
-                className="bg-white border border-[var(--panel-line)] rounded-[16px] p-6 shadow-xs hover:-translate-y-1 hover:shadow-md transition-all duration-200"
+                className="bg-white border border-[var(--panel-line)] rounded-[16px] p-6 shadow-xs hover:-translate-y-1 hover:shadow-[var(--shadow-card-hover)] hover:border-[rgba(91,76,255,0.2)] transition-all duration-300 group"
               >
                 <div className="w-11 h-11 rounded-[12px] bg-gradient-to-br from-[var(--indigo)] to-[#7A6BFF] text-white flex items-center justify-center mb-4 shadow-[0_8px_16px_-6px_rgba(91,76,255,0.5)]">
                   {value.icon}
                 </div>
-                <h4 className="text-[17.5px] font-bold mb-2 text-[var(--ink)]">{value.title}</h4>
+                <h4 className="text-[17.5px] font-bold mb-2 text-[var(--ink)] group-hover:text-[var(--indigo)] transition-colors duration-200">{value.title}</h4>
                 <p className="text-[15.5px] text-[var(--ink-soft)] leading-[1.55]">
                   {value.description}
                 </p>

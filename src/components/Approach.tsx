@@ -6,25 +6,30 @@ import { motion, useInView } from "framer-motion";
 interface Step {
   title: string;
   description: string;
+  tag: string;
 }
 
 const steps: Step[] = [
   {
+    tag: "01",
     title: "Scope & Recon",
     description:
       'We map the attack surface with you — assets, entry points, and what "success" looks like for an attacker.',
   },
   {
+    tag: "02",
     title: "Assess & Exploit",
     description:
       "Manual testing led by our team, backed by tooling — chasing real exploit paths, not just scanner output.",
   },
   {
+    tag: "03",
     title: "Report Findings",
     description:
       "Severity-rated findings with reproduction steps and remediation guidance your engineers can use.",
   },
   {
+    tag: "04",
     title: "Retest & Verify",
     description:
       "Once fixes ship, we retest the same findings and confirm closure before the file is closed.",
@@ -49,7 +54,7 @@ export function Approach() {
             <p className="font-[family-name:var(--font-mono)] text-[16.5px] font-bold tracking-[0.08em] uppercase text-[var(--indigo)] mb-2">
               Our Approach
             </p>
-            <h2 className="text-[clamp(1.9rem,3.2vw,2.6rem)] font-extrabold max-w-[20ch]">
+            <h2 className="text-[clamp(1.9rem,3.2vw,2.6rem)] font-extrabold max-w-[20ch] tracking-tight">
               How an engagement runs, start to retest
             </h2>
           </div>
@@ -68,7 +73,7 @@ export function Approach() {
           {/* Connecting line - desktop */}
           <div className="hidden md:block absolute top-[14px] left-0 right-0 h-[3px] bg-[var(--panel-line)]">
             <div
-              className="h-full bg-[var(--indigo)] rounded-full"
+              className="h-full bg-gradient-to-r from-[var(--indigo)] to-[#9E90FF] rounded-full"
               style={{
                 width: isInView ? "100%" : "0%",
                 transition: "width 1.5s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -83,11 +88,11 @@ export function Approach() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.3 + i * 0.15 }}
-                className="relative pt-10 md:pt-10"
+                className="relative pt-10 md:pt-10 group"
               >
                 {/* Dot */}
-                <span className="absolute top-0 md:top-0 left-0 w-[28px] h-[28px] rounded-full border-[3px] border-[var(--indigo)] bg-[var(--bg)] z-[2] flex items-center justify-center">
-                  <span className="w-[10px] h-[10px] rounded-full bg-[var(--indigo)]" />
+                <span className="absolute top-0 md:top-0 left-0 w-[28px] h-[28px] rounded-full border-[3px] border-[var(--indigo)] bg-[var(--bg)] z-[2] flex items-center justify-center group-hover:border-[var(--indigo-deep)] group-hover:shadow-[0_0_12px_rgba(91,76,255,0.3)] transition-all duration-300">
+                  <span className="w-[10px] h-[10px] rounded-full bg-[var(--indigo)] group-hover:bg-[var(--indigo-deep)] transition-colors duration-300" />
                 </span>
 
                 {/* Mobile connecting line */}
@@ -103,7 +108,10 @@ export function Approach() {
                   </div>
                 )}
 
-                <h3 className="text-[17px] font-bold mb-2">{step.title}</h3>
+                <span className="font-[family-name:var(--font-mono)] text-[12px] tracking-[0.08em] uppercase text-[var(--ink-faint)] mb-1.5 block">
+                  Step {step.tag}
+                </span>
+                <h3 className="text-[17px] font-bold mb-2 group-hover:text-[var(--indigo)] transition-colors duration-200">{step.title}</h3>
                 <p className="text-[15px] text-[var(--ink-soft)] leading-relaxed">
                   {step.description}
                 </p>

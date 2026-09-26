@@ -76,22 +76,22 @@ export function SignatureEncryptedSignal({ className = "" }: { className?: strin
   return (
     <div
       ref={containerRef}
-      className={`inline-flex flex-col sm:flex-row items-start sm:items-center gap-3.5 py-2.5 px-4 rounded-[14px] bg-[#0c0b16] border border-[rgba(91,76,255,0.22)] shadow-[0_4px_20px_rgba(91,76,255,0.12)] font-[family-name:var(--font-mono)] ${className}`}
+      className={`inline-flex flex-col sm:flex-row items-start sm:items-center gap-3.5 py-2.5 px-4 rounded-[14px] bg-[var(--surface)] border border-[var(--border)] shadow-[var(--shadow-card)] font-[family-name:var(--font-mono)] ${className}`}
     >
       <div className="flex items-center gap-2 text-[11px] font-bold tracking-[0.14em] text-[var(--mint)] uppercase flex-none">
         <span className="w-2 h-2 rounded-full bg-[var(--mint)] animate-pulse" />
         <span>ENCRYPTED SIGNAL</span>
       </div>
 
-      <div className="h-4 w-px bg-[rgba(255,255,255,0.1)] hidden sm:block" />
+      <div className="h-4 w-px bg-[var(--border)] hidden sm:block" />
 
       {/* Scramble and Resolve Area */}
       <div className="flex items-center gap-3">
         {phase !== "resolved" ? (
           <div className="text-[12px] tracking-wider font-medium leading-tight">
-            <span className="text-[#9E90FF]">{line1}</span>
-            <span className="text-[#716F87] mx-1.5">/</span>
-            <span className="text-[#B9AEFF]">{line2}</span>
+            <span className="text-[var(--indigo)] font-semibold">{line1}</span>
+            <span className="text-[var(--ink-faint)] mx-1.5">/</span>
+            <span className="text-[var(--ink-soft)]">{line2}</span>
           </div>
         ) : (
           <motion.div
@@ -99,15 +99,15 @@ export function SignatureEncryptedSignal({ className = "" }: { className?: strin
             animate={{ opacity: 1, scale: 1 }}
             className="flex items-center gap-2"
           >
-            <span className="text-[13px] font-extrabold tracking-[0.2em] text-white bg-[rgba(91,76,255,0.25)] px-2.5 py-0.5 rounded border border-[rgba(91,76,255,0.4)] shadow-xs">
+            <span className="text-[12.5px] font-extrabold tracking-[0.2em] text-white bg-[var(--indigo)] px-2.5 py-0.5 rounded shadow-xs">
               {resolvedWord}
             </span>
           </motion.div>
         )}
 
-        <div className="h-4 w-px bg-[rgba(255,255,255,0.1)] hidden md:block" />
+        <div className="h-4 w-px bg-[var(--border)] hidden md:block" />
 
-        <span className="text-[12px] text-[#716F87] font-normal tracking-normal hidden md:inline">
+        <span className="text-[12px] text-[var(--ink-faint)] font-normal tracking-normal hidden md:inline">
           &ldquo;We find the signal in the noise.&rdquo;
         </span>
       </div>

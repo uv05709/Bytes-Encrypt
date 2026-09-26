@@ -58,7 +58,7 @@ export default function BlogPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-[var(--ink)] rounded-[24px] p-8 md:p-11 relative overflow-hidden text-white shadow-[var(--shadow-elevated)]"
+            className="bg-[#100F1C] dark:bg-[#0C0B16] border border-[rgba(255,255,255,0.08)] rounded-[24px] p-8 md:p-11 relative overflow-hidden text-white shadow-[var(--shadow-elevated)]"
           >
             {/* Inner border glow */}
             <div className="absolute inset-0 rounded-[24px] pointer-events-none z-[1] border border-[rgba(255,255,255,0.05)]" />
@@ -115,7 +115,7 @@ export default function BlogPage() {
               >
                 <Link href={`/blog/${post.slug}`} className="no-underline flex flex-col h-full justify-between">
                   <div className="p-6 pb-2">
-                    <span className="font-[family-name:var(--font-mono)] text-[11.5px] uppercase tracking-[0.08em] bg-white text-[var(--indigo)] font-bold py-1 px-3 rounded-full inline-block mb-3.5 shadow-xs">
+                    <span className="font-[family-name:var(--font-mono)] text-[11.5px] uppercase tracking-[0.08em] bg-[var(--surface-secondary)] text-[var(--indigo)] border border-[var(--panel-line)] font-bold py-1 px-3 rounded-full inline-block mb-3.5 shadow-xs">
                       {post.tag}
                     </span>
                     <div className="flex items-center gap-2 font-[family-name:var(--font-mono)] text-[12px] uppercase tracking-[0.06em] text-[var(--ink-faint)] mb-3">

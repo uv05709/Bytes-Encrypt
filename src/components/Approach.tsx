@@ -145,8 +145,8 @@ export function Approach() {
                       <div
                         className={`flex-none w-[52px] h-[52px] rounded-2xl flex items-center justify-center transition-all duration-300 font-[family-name:var(--font-mono)] font-bold text-[14px] shadow-xs ${
                           isActive
-                            ? "bg-[var(--ink)] text-white ring-4 ring-[rgba(91,76,255,0.2)] scale-105"
-                            : "bg-[var(--panel)] text-[var(--ink-soft)] border border-[var(--panel-line)] hover:border-[var(--indigo)]"
+                            ? "bg-[var(--brand-primary)] text-white ring-4 ring-[rgba(91,76,255,0.25)] scale-105"
+                            : "bg-[var(--surface)] text-[var(--muted)] border border-[var(--border)] hover:border-[var(--brand-primary)]"
                         }`}
                         style={{
                           borderColor: isActive ? step.accentColor : undefined,
@@ -161,8 +161,8 @@ export function Approach() {
                         borderGlowColor={step.accentColor}
                         className={`flex-1 p-6 sm:p-7 rounded-[22px] border transition-all duration-300 ${
                           isActive
-                            ? "bg-white border-[rgba(91,76,255,0.3)] shadow-[var(--shadow-card-hover)] opacity-100"
-                            : "bg-[var(--panel)]/60 border-[var(--panel-line)] hover:bg-[var(--panel)] opacity-75 hover:opacity-100"
+                            ? "bg-[var(--surface)] border-[rgba(91,76,255,0.35)] shadow-[var(--shadow-card-hover)] opacity-100"
+                            : "bg-[var(--surface)]/70 border-[var(--border)] hover:bg-[var(--surface)] opacity-80 hover:opacity-100"
                         }`}
                       >
                         <div className="flex items-center justify-between mb-2">
@@ -186,11 +186,11 @@ export function Approach() {
                         </p>
 
                         {/* Deliverables tags */}
-                        <div className="pt-3 border-t border-[var(--panel-line)]/60 flex flex-wrap gap-2">
+                        <div className="pt-3 border-t border-[var(--border)] flex flex-wrap gap-2">
                           {step.deliverables.map((item) => (
                             <span
                               key={item}
-                              className="font-[family-name:var(--font-mono)] text-[11px] py-1 px-2.5 rounded-md bg-[rgba(19,18,28,0.04)] text-[var(--ink-soft)] flex items-center gap-1.5"
+                              className="font-[family-name:var(--font-mono)] text-[11px] py-1 px-2.5 rounded-md bg-[var(--surface-secondary)] text-[var(--ink-soft)] border border-[var(--border)] flex items-center gap-1.5"
                             >
                               <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: step.accentColor }} />
                               {item}

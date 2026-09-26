@@ -36,7 +36,7 @@ export default async function BlogPostPage({
           </Link>
 
           <div className="flex items-center gap-3 font-[family-name:var(--font-mono)] text-[13px] uppercase tracking-[0.06em] text-[var(--ink-faint)] mb-4">
-            <span className="bg-white border border-[var(--panel-line)] text-[var(--indigo)] font-bold py-1 px-3 rounded-full">
+            <span className="bg-[var(--surface-secondary)] border border-[var(--panel-line)] text-[var(--indigo)] font-bold py-1 px-3 rounded-full">
               {post.tag}
             </span>
             <span>&middot;</span>

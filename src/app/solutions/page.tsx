@@ -103,8 +103,8 @@ export default function SolutionsPage() {
                   onClick={() => setActiveFilter(f.key)}
                   className={`font-[family-name:var(--font-display)] font-semibold text-[15px] py-2 px-5 rounded-full border transition-all duration-180 cursor-pointer ${
                     isActive
-                      ? "bg-[var(--ink)] text-white border-[var(--ink)] shadow-sm"
-                      : "bg-[var(--bg)] text-[var(--ink-soft)] border-[var(--panel-line)] hover:border-[var(--indigo)] hover:text-[var(--indigo)]"
+                      ? "bg-[var(--brand-primary)] text-white border-[var(--brand-primary)] shadow-sm"
+                      : "bg-[var(--surface)] text-[var(--muted)] border-[var(--border)] hover:border-[var(--brand-primary)] hover:text-[var(--brand-primary)]"
                   }`}
                 >
                   {f.label}

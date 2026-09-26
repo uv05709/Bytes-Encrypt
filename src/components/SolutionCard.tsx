@@ -146,10 +146,10 @@ export function SolutionCard({
       >
         <Link
           href={`/solutions/${solution.slug}`}
-          className={`block p-7 h-full flex flex-col justify-between no-underline rounded-[22px] ${
+          className={`block p-7 h-full flex flex-col justify-between no-underline rounded-[22px] transition-colors duration-200 ${
             isFeatured
-              ? "bg-gradient-to-br from-[#12111d] to-[#1c1a2e] text-white"
-              : "bg-[#F7F7FA] text-[#13121C]"
+              ? "bg-gradient-to-br from-[#12111d] to-[#1f1d32] text-white shadow-lg"
+              : "bg-[var(--surface)] text-[var(--foreground)]"
           }`}
         >
           <div>
@@ -163,7 +163,7 @@ export function SolutionCard({
               <div className="flex flex-col items-end">
                 <span
                   className={`font-[family-name:var(--font-mono)] text-[12.5px] tracking-[0.08em] font-semibold uppercase ${
-                    isFeatured ? "text-[#B9AEFF]" : "text-[#716F87]"
+                    isFeatured ? "text-[#B9AEFF]" : "text-[var(--muted)]"
                   }`}
                 >
                   CHECK {solution.id}
@@ -177,16 +177,16 @@ export function SolutionCard({
             </div>
 
             {/* Title & Subtitle */}
-            <h3 className={`text-[19.5px] font-extrabold leading-[1.3] mb-2 ${isFeatured ? "text-white text-[23px]" : "text-[#13121C]"}`}>
+            <h3 className={`text-[19.5px] font-extrabold leading-[1.3] mb-2 ${isFeatured ? "text-white text-[23px]" : "text-[var(--foreground)]"}`}>
               {solution.title}
               <br />
-              <span className={`font-semibold ${isFeatured ? "text-[#C7C5D6] text-[18px]" : "text-[#3F3D52] text-[16px]"}`}>
+              <span className={`font-semibold ${isFeatured ? "text-[#C7C5D6] text-[18px]" : "text-[var(--muted)] text-[16px]"}`}>
                 {solution.subtitle}
               </span>
             </h3>
 
             {/* Description */}
-            <p className={`text-[15.5px] leading-[1.6] mb-5 ${isFeatured ? "text-[#C7C5D6] text-[16px]" : "text-[#3F3D52]"}`}>
+            <p className={`text-[15.5px] leading-[1.6] mb-5 ${isFeatured ? "text-[#C7C5D6] text-[16px]" : "text-[var(--muted)]"}`}>
               {solution.description}
             </p>
 
@@ -195,10 +195,10 @@ export function SolutionCard({
               {solution.chips.map((chip) => (
                 <span
                   key={chip}
-                  className={`font-[family-name:var(--font-mono)] text-[11px] tracking-[0.03em] py-1.5 px-3 rounded-full ${
+                  className={`font-[family-name:var(--font-mono)] text-[11px] tracking-[0.03em] py-1.5 px-3 rounded-full border border-transparent ${
                     isFeatured
                       ? "bg-[rgba(255,255,255,0.08)] text-[#D2D0E2]"
-                      : "bg-[rgba(19,18,28,0.05)] text-[#3F3D52]"
+                      : "bg-[var(--surface-secondary)] text-[var(--foreground)] border-[var(--border)]"
                   }`}
                 >
                   {chip}
@@ -208,13 +208,13 @@ export function SolutionCard({
           </div>
 
           {/* Card Bottom / Footer CTA */}
-          <div className={`flex items-center justify-between pt-4 border-t ${isFeatured ? "border-[rgba(255,255,255,0.1)]" : "border-[#E6E5EF]"}`}>
+          <div className={`flex items-center justify-between pt-4 border-t ${isFeatured ? "border-[rgba(255,255,255,0.1)]" : "border-[var(--border)]"}`}>
             <span className={`font-[family-name:var(--font-mono)] text-[11.5px] font-bold tracking-[0.08em] uppercase py-1 px-3 rounded-full ${tagClass}`}>
               {solution.category}
             </span>
             <span
               className={`flex items-center gap-1.5 text-[14.5px] font-bold transition-all duration-200 ${
-                isFeatured ? "text-[#B9AEFF] group-hover:text-white" : "text-[#5B4CFF] group-hover:text-[#4433E0]"
+                isFeatured ? "text-[#B9AEFF] group-hover:text-white" : "text-[var(--brand-primary)] group-hover:opacity-85"
               }`}
             >
               View details

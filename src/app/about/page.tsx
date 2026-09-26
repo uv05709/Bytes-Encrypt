@@ -225,7 +225,7 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="bg-[var(--ink)] rounded-[28px] p-8 md:p-12 relative overflow-hidden shadow-[var(--shadow-elevated)]">
+          <div className="bg-[#100F1C] dark:bg-[#0C0B16] rounded-[28px] p-8 md:p-12 relative overflow-hidden shadow-[var(--shadow-elevated)] border border-[rgba(255,255,255,0.08)]">
             <div
               className="absolute -inset-x-[10%] -top-[30%] h-[100%] z-0 pointer-events-none opacity-45 mesh-bg"
             />
@@ -291,7 +291,7 @@ export default function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={valuesInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.1 + i * 0.1 }}
-                className="bg-white border border-[var(--panel-line)] rounded-[16px] p-6 shadow-xs hover:-translate-y-1 hover:shadow-[var(--shadow-card-hover)] hover:border-[rgba(91,76,255,0.2)] transition-all duration-300 group"
+                className="bg-[var(--surface)] border border-[var(--border)] rounded-[16px] p-6 shadow-xs hover:-translate-y-1 hover:shadow-[var(--shadow-card-hover)] hover:border-[rgba(91,76,255,0.3)] transition-all duration-300 group"
               >
                 <div className="w-11 h-11 rounded-[12px] bg-gradient-to-br from-[var(--indigo)] to-[#7A6BFF] text-white flex items-center justify-center mb-4 shadow-[0_8px_16px_-6px_rgba(91,76,255,0.5)]">
                   {value.icon}

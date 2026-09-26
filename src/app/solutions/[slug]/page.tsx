@@ -52,7 +52,7 @@ export default async function SolutionDetailPage({
 
           {/* Title */}
           <h1 className="text-[clamp(2.4rem,4.8vw,4rem)] font-extrabold leading-[1.08] mt-4 mb-4 flex flex-wrap items-center gap-4 tracking-tight">
-            <span className="w-14 h-14 rounded-[16px] bg-white border border-[var(--panel-line)] flex items-center justify-center shadow-xs flex-none text-[var(--indigo)]">
+            <span className="w-14 h-14 rounded-[16px] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shadow-xs flex-none text-[var(--indigo)]">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-7 h-7">
                 <circle cx="12" cy="12" r="9" />
                 <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9s1.3-6.4 3.8-9Z" />
@@ -108,7 +108,7 @@ export default async function SolutionDetailPage({
           {/* Right Column: Category-specific Interactive Widget */}
           <div>
             {solution.category === "offensive" && solution.terminalData && (
-              <div className="bg-[var(--ink)] rounded-[18px] p-6 shadow-[var(--shadow-elevated)] border border-[rgba(255,255,255,0.08)] relative overflow-hidden">
+              <div className="bg-[#0D0C14] text-white rounded-[18px] p-6 shadow-[var(--shadow-elevated)] border border-[rgba(255,255,255,0.08)] relative overflow-hidden">
                 {/* Ambient glow */}
                 <div className="absolute inset-0 rounded-[18px] pointer-events-none z-0 border border-[rgba(255,255,255,0.05)]" />
                 {/* Console header */}
@@ -162,7 +162,7 @@ export default async function SolutionDetailPage({
               <div className="bg-[var(--panel)] border border-[var(--panel-line)] rounded-[18px] p-6 shadow-sm">
                 <div className="grid grid-cols-3 gap-3 text-center">
                   {solution.coverageData.map((cov, i) => (
-                    <div key={i} className="bg-white border border-[var(--panel-line)] rounded-[14px] p-4 flex flex-col items-center">
+                    <div key={i} className="bg-[var(--surface)] border border-[var(--panel-line)] rounded-[14px] p-4 flex flex-col items-center">
                       <svg width="60" height="60" viewBox="0 0 80 80" className="mb-2">
                         <circle cx="40" cy="40" r="34" fill="none" stroke="#E6E5EF" strokeWidth="6" />
                         <circle

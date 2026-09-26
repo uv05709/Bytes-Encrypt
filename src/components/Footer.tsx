@@ -58,7 +58,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--ink)] text-white pt-16 pb-8 relative overflow-hidden">
+    <footer className="bg-[#0B0A14] dark:bg-[#06050C] text-white pt-16 pb-8 relative overflow-hidden border-t border-[var(--panel-line)]">
       {/* Subtle mesh gradient at the top */}
       <div
         className="absolute -inset-x-[10%] -top-[60%] h-[60%] z-0 pointer-events-none opacity-30 mesh-bg"

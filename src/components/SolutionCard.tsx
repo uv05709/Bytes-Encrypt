@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import type { SolutionItem } from "@/lib/solutions-data";
+import { SpotlightCard } from "./SpotlightCard";
 
 function getSolutionIcon(id: string) {
   switch (id) {
@@ -109,14 +110,13 @@ export function SolutionCard({
     ? "bg-gradient-to-br from-[#17B978] to-[#0f9c62]"
     : "bg-gradient-to-br from-[#F2A930] to-[#d99114]";
 
-  // Border top color
-  const borderTopClass = isFeatured
-    ? "border-t-4 border-[#5B4CFF]"
+  const categoryColor = isFeatured
+    ? "#5B4CFF"
     : solution.category === "offensive"
-    ? "border-t-4 border-[#F0483E]"
+    ? "#F0483E"
     : solution.category === "assurance"
-    ? "border-t-4 border-[#17B978]"
-    : "border-t-4 border-[#F2A930]";
+    ? "#17B978"
+    : "#F2A930";
 
   // Category tag colors
   const tagClass = isFeatured
@@ -127,95 +127,105 @@ export function SolutionCard({
     ? "bg-[rgba(23,185,120,0.1)] text-[#17B978]"
     : "bg-[rgba(242,169,48,0.1)] text-[#F2A930]";
 
-  // Hover shadow based on category
-  const hoverShadow = isFeatured
-    ? "hover:shadow-[0_12px_40px_-10px_rgba(91,76,255,0.25)]"
-    : solution.category === "offensive"
-    ? "hover:shadow-[0_12px_40px_-10px_rgba(240,72,62,0.15)]"
-    : solution.category === "assurance"
-    ? "hover:shadow-[0_12px_40px_-10px_rgba(23,185,120,0.15)]"
-    : "hover:shadow-[0_12px_40px_-10px_rgba(242,169,48,0.15)]";
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 14 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.055 }}
-      className={`rounded-[20px] transition-all duration-300 hover:-translate-y-1.5 ${hoverShadow} group relative ${
-        isFeatured ? "md:col-span-2" : ""
-      }`}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
+      className={`h-full ${isFeatured ? "md:col-span-2" : ""}`}
     >
-      <Link
-        href={`/solutions/${solution.slug}`}
-        className={`block p-7 h-full flex flex-col justify-between rounded-[20px] border no-underline ${borderTopClass} ${
+      <SpotlightCard
+        tiltEffect={true}
+        spotlightColor={
           isFeatured
-            ? "bg-gradient-to-br from-[#13121C] to-[#221f33] border-[rgba(255,255,255,0.08)] text-white hover:border-[rgba(139,124,255,0.3)]"
-            : "bg-[#F4F4F8] border-[#E6E5EF] text-[#13121C] hover:border-[rgba(91,76,255,0.25)]"
-        } transition-colors duration-300`}
+            ? "rgba(91, 76, 255, 0.22)"
+            : `${categoryColor}15`
+        }
+        borderGlowColor={categoryColor}
+        className="h-full group rounded-[22px] border border-[var(--panel-line)] hover:border-transparent transition-all duration-300 shadow-sm hover:shadow-[var(--shadow-card-hover)]"
       >
-        <div>
-          {/* Card Top: Icon + CHECK ID */}
-          <div className="flex items-start justify-between mb-5">
-            <div
-              className={`w-[60px] h-[60px] rounded-[16px] flex items-center justify-center text-white shadow-md transition-all duration-300 group-hover:scale-105 group-hover:-rotate-3 group-hover:shadow-lg ${iconGradient}`}
-            >
-              {getSolutionIcon(solution.id)}
+        <Link
+          href={`/solutions/${solution.slug}`}
+          className={`block p-7 h-full flex flex-col justify-between no-underline rounded-[22px] ${
+            isFeatured
+              ? "bg-gradient-to-br from-[#12111d] to-[#1c1a2e] text-white"
+              : "bg-[#F7F7FA] text-[#13121C]"
+          }`}
+        >
+          <div>
+            {/* Top Bar: Icon + ID + subtle category indicator */}
+            <div className="flex items-start justify-between mb-5">
+              <div
+                className={`w-[60px] h-[60px] rounded-[16px] flex items-center justify-center text-white shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3 ${iconGradient}`}
+              >
+                {getSolutionIcon(solution.id)}
+              </div>
+              <div className="flex flex-col items-end">
+                <span
+                  className={`font-[family-name:var(--font-mono)] text-[12.5px] tracking-[0.08em] font-semibold uppercase ${
+                    isFeatured ? "text-[#B9AEFF]" : "text-[#716F87]"
+                  }`}
+                >
+                  CHECK {solution.id}
+                </span>
+                {/* Subtle hover reveal indicator */}
+                <span className="text-[10px] font-[family-name:var(--font-mono)] text-[var(--mint)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-1 flex items-center gap-1">
+                  <CheckCircle2 size={10} />
+                  <span>AUDIT READY</span>
+                </span>
+              </div>
             </div>
+
+            {/* Title & Subtitle */}
+            <h3 className={`text-[19.5px] font-extrabold leading-[1.3] mb-2 ${isFeatured ? "text-white text-[23px]" : "text-[#13121C]"}`}>
+              {solution.title}
+              <br />
+              <span className={`font-semibold ${isFeatured ? "text-[#C7C5D6] text-[18px]" : "text-[#3F3D52] text-[16px]"}`}>
+                {solution.subtitle}
+              </span>
+            </h3>
+
+            {/* Description */}
+            <p className={`text-[15.5px] leading-[1.6] mb-5 ${isFeatured ? "text-[#C7C5D6] text-[16px]" : "text-[#3F3D52]"}`}>
+              {solution.description}
+            </p>
+
+            {/* Chips */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {solution.chips.map((chip) => (
+                <span
+                  key={chip}
+                  className={`font-[family-name:var(--font-mono)] text-[11px] tracking-[0.03em] py-1.5 px-3 rounded-full ${
+                    isFeatured
+                      ? "bg-[rgba(255,255,255,0.08)] text-[#D2D0E2]"
+                      : "bg-[rgba(19,18,28,0.05)] text-[#3F3D52]"
+                  }`}
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Card Bottom / Footer CTA */}
+          <div className={`flex items-center justify-between pt-4 border-t ${isFeatured ? "border-[rgba(255,255,255,0.1)]" : "border-[#E6E5EF]"}`}>
+            <span className={`font-[family-name:var(--font-mono)] text-[11.5px] font-bold tracking-[0.08em] uppercase py-1 px-3 rounded-full ${tagClass}`}>
+              {solution.category}
+            </span>
             <span
-              className={`font-[family-name:var(--font-mono)] text-[12.5px] tracking-[0.08em] font-semibold uppercase ${
-                isFeatured ? "text-[#B9AEFF]" : "text-[#716F87]"
+              className={`flex items-center gap-1.5 text-[14.5px] font-bold transition-all duration-200 ${
+                isFeatured ? "text-[#B9AEFF] group-hover:text-white" : "text-[#5B4CFF] group-hover:text-[#4433E0]"
               }`}
             >
-              CHECK {solution.id}
+              View details
+              <ArrowRight
+                size={14}
+                className="group-hover:translate-x-1.5 transition-transform duration-300"
+              />
             </span>
           </div>
-
-          {/* Titles */}
-          <h3 className={`text-[19.5px] font-extrabold leading-[1.3] mb-2 ${isFeatured ? "text-white text-[23px]" : "text-[#13121C]"}`}>
-            {solution.title}
-            <br />
-            <span className={`font-semibold ${isFeatured ? "text-[#C7C5D6] text-[18px]" : "text-[#3F3D52] text-[16px]"}`}>
-              {solution.subtitle}
-            </span>
-          </h3>
-
-          {/* Description */}
-          <p className={`text-[15.5px] leading-[1.6] mb-5 ${isFeatured ? "text-[#C7C5D6] text-[16px]" : "text-[#3F3D52]"}`}>
-            {solution.description}
-          </p>
-
-          {/* Chips */}
-          <div className="flex flex-wrap gap-2 mb-6">
-            {solution.chips.map((chip) => (
-              <span
-                key={chip}
-                className={`font-[family-name:var(--font-mono)] text-[11px] tracking-[0.03em] py-1.5 px-3 rounded-full ${
-                  isFeatured
-                    ? "bg-[rgba(255,255,255,0.08)] text-[#D2D0E2]"
-                    : "bg-[rgba(19,18,28,0.045)] text-[#3F3D52]"
-                }`}
-              >
-                {chip}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Card Bottom */}
-        <div className={`flex items-center justify-between pt-4 border-t ${isFeatured ? "border-[rgba(255,255,255,0.1)]" : "border-[#E6E5EF]"}`}>
-          <span className={`font-[family-name:var(--font-mono)] text-[11.5px] font-bold tracking-[0.08em] uppercase py-1 px-3 rounded-full ${tagClass}`}>
-            {solution.category}
-          </span>
-          <span
-            className={`flex items-center gap-1.5 text-[14.5px] font-bold transition-colors ${
-              isFeatured ? "text-[#B9AEFF] group-hover:text-white" : "text-[#5B4CFF] group-hover:text-[#4433E0]"
-            }`}
-          >
-            View details
-            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
-          </span>
-        </div>
-      </Link>
+        </Link>
+      </SpotlightCard>
     </motion.div>
   );
 }

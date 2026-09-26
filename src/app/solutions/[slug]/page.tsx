@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { allSolutions, type SolutionItem } from "@/lib/solutions-data";
+import { allSolutions } from "@/lib/solutions-data";
 
 export function generateStaticParams() {
   return allSolutions.map((s) => ({
